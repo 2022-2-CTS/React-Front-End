@@ -3,10 +3,9 @@ import React from "react";
 const Login = () => {
   return (
     <div>
-      <h1>홈</h1>
-      <p>가장 먼저 보여지는 페이지입니다.</p>
+      <h1>부산 문화 예술 지도</h1>
     </div>
-  );
+  ); 
 };
 
 export default Login;
