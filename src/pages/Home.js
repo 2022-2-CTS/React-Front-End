@@ -13,7 +13,7 @@ const Login = () => {
           </button>
           <div class="font-light text-black text-sm">
               <span class="text-slate-800">계정이 없으신가요?</span>
-              <a href="" class="underline text-indigo-500 font-bold underline-offset-2">회원가입</a>
+              <a href="./signup" class="underline text-indigo-500 font-bold underline-offset-2">회원가입</a>
           </div>
         </div>
       </div>
