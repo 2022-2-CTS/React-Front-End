@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 const Login = () => {
 
+    const [id, setId] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
+
     function complete(){
-        window.location.href="./"
+        window.location.href="./signin"
     }
 
     return (
