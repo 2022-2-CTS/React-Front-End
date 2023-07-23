@@ -8,7 +8,7 @@ const Login = () => {
   // http://192.168.45.119:3000/kakao-login?code=ld55lY2TeJ3d0MEt1urrpqZM8C7hTAN7qVUSjAuUxCux-MeebnfrnLNr3Bza6kHmhZwoowoqJU8AAAGJbsl0VQ
   // https://kauth.kakao.com/oauth/authorize?client_id=e6c2fe139670b147caaf750b558a4750&redirect_uri=http://192.168.45.119:3000/kakao-login&response_type=code
   const Rest_api_key = 'e6c2fe139670b147caaf750b558a4750'
-  const redirect_uri = 'http://192.168.45.119:3000/kakao-login'
+  const redirect_uri = 'http://localhost:3000/kakao-login'
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
   function loginForKakao(){
     window.location.href = kakaoURL

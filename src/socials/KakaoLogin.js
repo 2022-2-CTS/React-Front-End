@@ -9,7 +9,7 @@ const KakaoLogin = () => {
     }, [])
 
     const response = () => {
-        axios.post('http://localhost:8080/api',{
+        axios.post('http://localhost:8080/api/index/test',{
             code : loginCode
         })
         .then(res => console.log(res.data))
