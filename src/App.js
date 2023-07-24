@@ -5,9 +5,11 @@ import "./index.css";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Map from "./pages/Map";
+import MyPage from "./pages/MyPage";
+
 import ShareInfo from "./info/ShareInfo";
 import KakaoLogin from "./socials/KakaoLogin";
-import Map from "./pages/Map";
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
         <Route path="/home/shareinfo" element={<ShareInfo />} />
         <Route path="/kakao-login" element={<KakaoLogin />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );

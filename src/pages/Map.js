@@ -21,9 +21,7 @@ const Map = () => {
 
     return (
         <React.Fragment>
-            <div id="map" style={ {width: '500px', height: '500px'} }>
-                Map Page
-            </div>
+            <div id="map" className="w-screen h-screen"></div>
 
             <Nav />
         </React.Fragment>
