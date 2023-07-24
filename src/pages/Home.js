@@ -1,4 +1,5 @@
 import React from "react";
+import {GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 
 const Login = () => {
 
@@ -26,8 +27,12 @@ const Login = () => {
     window.location.href = naverURL
   }
 
+  function loginForGoogle(){
+    window.location.href = './google-login'
+  }
+
   return (
-    <div class="flex justify-center items-center text-center min-h-screen">
+    <div class="flex justify-center items-center text-centser min-h-screen">
       <div class="">
         <div class="pb-8 font-bold text-2xl">부산시 문화예술 지도</div>
         <div class="grid grid-rows-4 gap-3">
@@ -36,6 +41,9 @@ const Login = () => {
           </button>
           <img onClick={loginForKakao} class="px-2 w-full" src="images/kakao_login_medium_narrow.png"></img>
           <img onClick={loginForNaver} class="px-2 h-11 w-full" src="images/btnG_완성형.png"></img>
+          <button onClick={loginForGoogle} class="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
+            <p class="text-white font-bold">구글</p>
+          </button>
         </div>
       </div>
     </div>
@@ -43,3 +51,7 @@ const Login = () => {
 };
 
 export default Login;
+
+
+//클라이언트 아이디 432961785509-qqi0ut13397irei6m61up42os7bc59t3.apps.googleusercontent.com
+//클라이언트 보안 비밀번호 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
