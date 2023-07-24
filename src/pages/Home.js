@@ -29,7 +29,7 @@ const Login = () => {
           <button onClick={local} class="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
             <p class="text-white font-bold">문화</p>
           </button>
-          <img onClick={loginForKakao} class="px-2" src="images/kakao_login_medium_narrow.png"></img>
+          <img onClick={loginForKakao} class="px-2 w-full" src="images/kakao_login_medium_narrow.png"></img>
           <img onClick={loginForNaver} class="px-2 h-11 w-full" src="images/btnG_완성형.png"></img>
         </div>
       </div>

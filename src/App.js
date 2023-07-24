@@ -10,6 +10,7 @@ import MyPage from "./pages/MyPage";
 
 import ShareInfo from "./info/ShareInfo";
 import KakaoLogin from "./socials/KakaoLogin";
+import NaverLogin from "./socials/NaverLogin";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home/shareinfo" element={<ShareInfo />} />
         <Route path="/kakao-login" element={<KakaoLogin />} />
+        <Route path="/naver-login" element={<NaverLogin />} />
         <Route path="/map" element={<Map />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
