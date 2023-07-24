@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 
-import Home from './pages/Home.js';
-import SignIn from './pages/SignIn.js';
-import SignUp from './pages/SignUp.js';
-import ShareInfo from './info/ShareInfo.js';
-import KakaoLogin from './socials/KakaoLogin.js';
-import Map from './pages/Map.js';
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import ShareInfo from "./info/ShareInfo";
+import KakaoLogin from "./socials/KakaoLogin";
+import Map from "./pages/Map";
 
 const App = () => {
   return (
