@@ -17,8 +17,13 @@ const Login = () => {
   const code = new URL(window.location.href).searchParams.get("code");
   console.log(code)
 
+
+  const naver_client_id = 'o9JmjRrP1GmmANohGaH1'
+  const callback_uri = 'http://localhost:3000/naver-login'
+  const naverURL = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + naver_client_id + '&redirect_uri=' + encodeURI(callback_uri) + '&state=' + Math.random().toString(36).substr(3, 14);
+
   function loginForNaver(){
-    window.location.href = '/'
+    window.location.href = naverURL
   }
 
   return (
