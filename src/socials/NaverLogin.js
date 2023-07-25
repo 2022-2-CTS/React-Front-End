@@ -19,7 +19,7 @@ const NaverLogin = () => {
         }).then((req) => {
             console.log(req.data);
             if (req.data == "로그인 성공!!"){
-                window.location.href = '/main'
+                window.location.href = '/map'
             }else{
                 window.location.href = '/'
                 console.log("로그인 실패")

@@ -121,10 +121,10 @@ const Login = () => {
                             <p class="font-bold text-xl text-white">가입 완료</p>
                         </button>
                         :
-                        <button class="rounded-lg border-solid border-2 border-indigo-200 bg-indigo-200 w-full py-2"
+                        <div class="flex justify-center align-center rounded-lg border-solid border-2 border-indigo-200 bg-indigo-200 w-full py-2"
                         >
-                            <p class="font-bold text-xl text-white">가입 실패</p>
-                        </button>
+                            <p class="font-bold text-xl text-white">가입 완료</p>
+                        </div>
                     }
                 </div>
             </div>
