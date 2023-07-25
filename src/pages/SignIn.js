@@ -6,6 +6,24 @@ const SignIn = () => {
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
 
+  const [pwType, setpwType] = useState({
+    type: "password",
+    visible: false,
+  });
+
+  function handlePasswordType(e){
+    setpwType(() => {
+    // 만약 현재 pwType.visible이 false 라면
+      if (!pwType.visible) {
+        return { type: "text", visible: true };
+
+	//현재 pwType.visible이 true 라면
+      } else {
+        return { type: "password", visible: false };
+      }
+    });
+  };
+
   function saveUserId(event){
     setId(event.target.value);
   }
@@ -36,7 +54,7 @@ const SignIn = () => {
   }
 
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log(code)
+  // console.log(code)
 
 
   const naver_client_id = 'o9JmjRrP1GmmANohGaH1'
@@ -56,12 +74,19 @@ const SignIn = () => {
       <div class="">
         <div class="pb-8 font-bold text-2xl">부산시 문화예술 지도</div>
         <div class="grid grid-rows-4 gap-3">
-        <input type="text" name="id" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="아이디"
-          onChange={saveUserId}  
-        />
-        <input type="text" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" 
-          onChange={saveUserPw}
-        />
+          <div>
+            <input type="text" name="id" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="아이디"
+              onChange={saveUserId}
+            />
+          </div>
+          <div class="relative">
+            <input type={pwType.type} name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" 
+              onChange={saveUserPw}
+            />
+            <span class="absolute inset-y-0 right-0 my-2.5 mx-3" onClick={handlePasswordType}>
+              {pwType.visible ? "x" : "o"}
+            </span>
+          </div>
           <button class="rounded-lg border-solid border-2 border-indigo-500 bg-indigo-500" onClick={loginForApp}>
             <p class="font-bold text-white">로그인</p>
           </button>
