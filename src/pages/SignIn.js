@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
+import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
+
 const SignIn = () => {
 
   const [id, setId] = useState('')
@@ -83,15 +86,15 @@ const SignIn = () => {
             <input type={pwType.type} name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" 
               onChange={saveUserPw}
             />
-            <span class="absolute inset-y-0 right-0 my-2.5 mx-3" onClick={handlePasswordType}>
-              {pwType.visible ? "x" : "o"}
+            <span class="absolute inset-y-0 right-0 my-4 mx-3" onClick={handlePasswordType}>
+              {pwType.visible ? <Visibility /> : <Visibility_off />}
             </span>
           </div>
           <button class="rounded-lg border-solid border-2 border-indigo-500 bg-indigo-500" onClick={loginForApp}>
             <p class="font-bold text-white">로그인</p>
           </button>
           <div class="font-light text-black text-sm">
-              <span class="text-slate-800">계정이 없으신가요?</span>
+              <span class="text-slate-800">계정이 없으신가요? </span>
               <a href="./signup" class="underline text-indigo-500 font-bold underline-offset-2">회원가입</a>
           </div>
           <div class="grid grid-cols-3 gap-4 px-10">
