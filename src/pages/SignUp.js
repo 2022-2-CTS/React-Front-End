@@ -7,19 +7,10 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [idValidCheck, setIdValidCheck] = useState(false)
-    const [passwordMatch, setPasswordMatch] = useState(false)
+    // const [passwordMatch, setPasswordMatch] = useState(false)
+    const [idButtonHandler, setIdButtonHandler] = useState('')
 
-    useEffect(() => {
-        if (password != ''){
-            if (password == passwordConfirm){
-                setPasswordMatch(true)
-            }else{
-                setPasswordMatch(false)
-            }
-        }else{
-            setPasswordMatch(false)
-        }
-    })
+    const passwordMatch = password == passwordConfirm
 
     const blankCheck = passwordConfirm == ''
 
@@ -27,6 +18,9 @@ const Login = () => {
 
     function saveUserId(event){
         setId(event.target.value)
+        if(event.target.value == ''){
+            setIdButtonHandler('아이디 중복 확인을 눌러주세요')
+        }
     }
 
     function saveUserPw(event){
@@ -46,9 +40,19 @@ const Login = () => {
             if (req.data == 'success'){
                 setIdValidCheck(true)
                 console.log("오!!")
+                if (id != ''){
+                    setIdButtonHandler('사용할 수 있는 아이디 입니다.')
+                }else{
+                    setIdButtonHandler('아이디 중복 확인을 눌러주세요')
+                }
             }else{
                 setIdValidCheck(false)
-                console.log("오잉?")    
+                console.log("오잉?")
+                if (id != ''){
+                    setIdButtonHandler('사용할 수 없는 아이디 입니다.')
+                }else{
+                    setIdButtonHandler('아이디 중복 확인을 눌러주세요')
+                }
             }
         }).catch((err) => {
             console.log(err)
@@ -90,13 +94,7 @@ const Login = () => {
                     </button>
                 </div>
                 <div class="col-span-3">
-                    {
-                        idValidCheck
-                        ?
-                        <p class="font-light text-sm font-bold text-green-600">사용할 수 있는 아이디 입니다.</p>
-                        :
-                        <p class="font-light text-sm font-bold text-rose-600">사용할 수 없는 아이디 입니다.</p>
-                    }
+                    <p class="font-light text-sm font-bold text-green-600">{idButtonHandler}</p>
                 </div>
                 <div class="col-span-4 mt-4">
                     <label class="block">
