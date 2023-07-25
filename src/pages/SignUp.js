@@ -7,8 +7,19 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [idValidCheck, setIdValidCheck] = useState(false)
+    const [passwordMatch, setPasswordMatch] = useState(false)
 
-    const passwordMatch = password == passwordConfirm
+    useEffect(() => {
+        if (password != ''){
+            if (password == passwordConfirm){
+                setPasswordMatch(true)
+            }else{
+                setPasswordMatch(false)
+            }
+        }else{
+            setPasswordMatch(false)
+        }
+    })
 
     const blankCheck = passwordConfirm == ''
 
