@@ -11,7 +11,7 @@ import MyPage from "./pages/MyPage";
 import ShareInfo from "./info/ShareInfo";
 import KakaoLogin from "./socials/KakaoLogin";
 import NaverLogin from "./socials/NaverLogin";
-import GoogleLogin from "./socials/Google"
+import GoogleLogin from "./socials/Google";
 
 const App = () => {
   return (

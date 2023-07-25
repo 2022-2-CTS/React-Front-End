@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation  } from "react-router-dom";
+
+import { ReactComponent as Board } from "../img/icon/board.svg";
+import { ReactComponent as BoardActive } from "../img/icon/board_active.svg";
+import { ReactComponent as Home } from "../img/icon/map.svg";
+import { ReactComponent as HomeActive } from "../img/icon/map_active.svg";
+import { ReactComponent as MyPage } from "../img/icon/mypage.svg";
+import { ReactComponent as MyPageActive } from "../img/icon/mypage_active.svg";
 
 const Nav = () => {
     // hook
     const navigate = useNavigate();
+    const location = useLocation();
 
     // state
     let [buttonColor, setButtonColor] = useState([false, false, false]);
@@ -21,9 +29,16 @@ const Nav = () => {
 
         // 페이지 전환
         navigate(pageName[pageNum]);
-
-        // 아이콘 색상 변경
     }
+
+    useEffect(() => {
+        // 아이콘 색상 변경
+        pageName.map((item, index) => {
+            if(location.pathname === item) {
+                ChangeButtonColor(index);
+            }
+        });
+    }, []);
 
     return (
         <React.Fragment>
@@ -31,19 +46,19 @@ const Nav = () => {
             z-50 fixed bottom-0
             flex items-center justify-between">
 
-                    <div className="m-8"
+                    <div className="ml-8"
                         onClick={ () => ChangeButtonColor(0) }>
-                        board
+                        { !buttonColor[0] ? <Board></Board> : <BoardActive></BoardActive> }
                     </div>
 
                     <div className="m-8"
                         onClick={ () => ChangeButtonColor(1) }>
-                        map
+                        { !buttonColor[1] ? <Home></Home> : <HomeActive></HomeActive> }
                     </div>
 
-                    <div className="m-8"
+                    <div className="mr-8"
                         onClick={ () => ChangeButtonColor(2) }>
-                        mypage
+                        { !buttonColor[2] ? <MyPage></MyPage> : <MyPageActive></MyPageActive> }
                     </div>
 
             </div>
