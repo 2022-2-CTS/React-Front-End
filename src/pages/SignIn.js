@@ -1,9 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const SignIn = () => {
 
-  function local(){
-    window.location.href="./signin"
+  const [id, setId] = useState('')
+  const [pw, setPw] = useState('')
+
+  function saveUserId(event){
+    setId(event.target.value);
+  }
+
+  function saveUserPw(event){
+    setPw(event.target.value);
+  }
+
+  function loginForApp(){
+    console.log("앱 로그인")
+    console.log(id)
+    console.log(pw)
+    axios.post("http://localhost:3004/api/index/login",{
+      sendId : id,
+      sendPw : pw,
+    }).then((req) => {
+      console.log(req.data)
+    }).catch((err) => {
+      console.log(err)
+    })
   }
   
   const Rest_api_key = 'e6c2fe139670b147caaf750b558a4750'
@@ -34,9 +56,13 @@ const SignIn = () => {
       <div class="">
         <div class="pb-8 font-bold text-2xl">부산시 문화예술 지도</div>
         <div class="grid grid-rows-4 gap-3">
-        <input type="text" name="id" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="아이디" />
-        <input type="text" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" />
-          <button class="rounded-lg border-solid border-2 border-indigo-500 bg-indigo-500">
+        <input type="text" name="id" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="아이디"
+          onChange={saveUserId}  
+        />
+        <input type="text" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" 
+          onChange={saveUserPw}
+        />
+          <button class="rounded-lg border-solid border-2 border-indigo-500 bg-indigo-500" onClick={loginForApp}>
             <p class="font-bold text-white">로그인</p>
           </button>
           <div class="font-light text-black text-sm">
