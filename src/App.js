@@ -11,14 +11,14 @@ import MyPage from "./pages/MyPage";
 import ShareInfo from "./info/ShareInfo";
 import KakaoLogin from "./socials/KakaoLogin";
 import NaverLogin from "./socials/NaverLogin";
-import GoogleLogin from "./socials/Google";
+import GoogleLogin from "./socials/Google"
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home/shareinfo" element={<ShareInfo />} />
         <Route path="/kakao-login" element={<KakaoLogin />} />
