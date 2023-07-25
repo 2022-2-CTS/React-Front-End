@@ -7,20 +7,43 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [idValidCheck, setIdValidCheck] = useState(false)
-    // const [passwordMatch, setPasswordMatch] = useState(false)
+    const [passwordMatch, setPasswordMatch] = useState(false)
     const [idButtonHandler, setIdButtonHandler] = useState('')
 
-    const passwordMatch = password == passwordConfirm
+    const [finish, setFinish] = useState('false')
 
     const blankCheck = passwordConfirm == ''
 
-    const finish = idValidCheck == passwordMatch;
+    // const finish = idValidCheck == passwordMatch;
+
+    useEffect(() => {
+        if (password == passwordConfirm){
+            setPasswordMatch(true);
+            console.log(password)
+            console.log(passwordConfirm)
+            console.log(passwordMatch)
+        }else{
+            setPasswordMatch(false);
+            console.log(password)
+            console.log(passwordConfirm)
+            console.log(passwordMatch)
+            setFinish(false)
+        }
+
+        if (id == ''){
+            setIdButtonHandler('아이디 중복 확인을 눌러주세요')
+        }
+        if(password == '' && idValidCheck == false){
+            setFinish(false)
+        }else if(idValidCheck == true && passwordMatch == true && password != ''){
+            setFinish(true)
+        }else if(password == '' && idValidCheck == true || passwordConfirm == ''){
+            setFinish(false)
+        }
+    })
 
     function saveUserId(event){
         setId(event.target.value)
-        if(event.target.value == ''){
-            setIdButtonHandler('아이디 중복 확인을 눌러주세요')
-        }
     }
 
     function saveUserPw(event){
