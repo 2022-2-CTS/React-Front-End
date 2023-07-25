@@ -9,6 +9,7 @@ import Map from "./pages/Map";
 import MyPage from "./pages/MyPage";
 
 import ShareInfo from "./info/ShareInfo";
+import ShareInfoWrite from "./info/ShareInfoWrite";
 import KakaoLogin from "./socials/KakaoLogin";
 import NaverLogin from "./socials/NaverLogin";
 import GoogleLogin from "./socials/Google"
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home/shareinfo" element={<ShareInfo />} />
+        <Route path="/home/shareinfo/Write" element={<ShareInfoWrite />} />
         <Route path="/kakao-login" element={<KakaoLogin />} />
         <Route path="/naver-login" element={<NaverLogin />} />
         <Route path="/google-login" element={<GoogleLogin />} />
