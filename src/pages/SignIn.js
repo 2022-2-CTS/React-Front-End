@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
 import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
@@ -13,6 +13,23 @@ const SignIn = () => {
     type: "password",
     visible: false,
   });
+  
+  const validToken = localStorage.getItem("userToken")
+
+  useEffect(() => {
+    console.log(validToken)
+    axios.post('http://localhost:3004/api/index/alreadyLogined',{
+      validToken
+    }).then((res) => {
+      console.log(res.data)
+      if (localStorage.getItem("id") == res.data.id){
+        console.log("일치합니다.")
+        window.location.href = '/map'
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
 
   function handlePasswordType(e){
     setpwType(() => {
@@ -47,6 +64,7 @@ const SignIn = () => {
       if (req.data != "fail"){
         window.location.href = '/map'
         localStorage.setItem("userToken", req.data.token)
+        localStorage.setItem("id", id)
       }
     }).catch((err) => {
       console.log(err)
