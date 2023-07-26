@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useCallback, useEffect, useState} from "react";
+import crypto from 'crypto-js';
 
 const Login = () => {
 
@@ -86,11 +87,13 @@ const Login = () => {
         if(passwordMatch){
             console.log(id)
             console.log(password)
+            const ciphertextPw = crypto.AES.encrypt(password, 'culture').toString();
             axios.post("http://localhost:3004/api/index/signup",{
                 sendId : id,
-                sendPw : password,
+                sendPw : ciphertextPw,
             }).then((req) => {
                 console.log(req.body)
+                window.location.href='/'
             }).catch((err) => {
                 console.log(err)
             })

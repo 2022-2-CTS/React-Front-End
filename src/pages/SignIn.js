@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import crypto from 'crypto-js'
 
 import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
 import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
@@ -56,9 +57,11 @@ const SignIn = () => {
     console.log("앱 로그인")
     console.log(id)
     console.log(pw)
+    const ciphertext = crypto.AES.encrypt(pw, 'culture').toString();
+    console.log(ciphertext)
     axios.post("http://localhost:3004/api/index/login",{
       sendId : id,
-      sendPw : pw,
+      sendPw : ciphertext,
     }).then((req) => {
       console.log(req.data)
       if (req.data != "fail"){
