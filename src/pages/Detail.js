@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 
 import { ReactComponent as Previous } from "../img/icon/back.svg";
@@ -11,6 +11,8 @@ import { ReactComponent as Location } from "../img/icon/location.svg";
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 const Detail = () => {
+    let [heart, setHeart] = useState(false);
+
     return (
         <React.Fragment>
             {/* Header (pre, head, heart) */}
@@ -19,7 +21,7 @@ const Detail = () => {
                 <span className="text-lg font-medium">
                     상세 정보
                 </span>
-                <Heart />
+                { heart ? <HeartActive onClick={ () => setHeart(!heart) } /> : <Heart onClick={ () => setHeart(!heart) } /> }
             </div>
 
             <hr className="m-2 mb-6"/>
