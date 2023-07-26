@@ -44,6 +44,9 @@ const SignIn = () => {
       sendPw : pw,
     }).then((req) => {
       console.log(req.data)
+      if (req.data == "success"){
+        window.location.href = '/map'
+      }
     }).catch((err) => {
       console.log(err)
     })
