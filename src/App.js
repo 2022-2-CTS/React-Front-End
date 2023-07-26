@@ -7,9 +7,11 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Map from "./pages/Map";
 import MyPage from "./pages/MyPage";
+import Detail from "./pages/Detail";
 
 import ShareInfo from "./info/ShareInfo";
 import ShareInfoWrite from "./info/ShareInfoWrite";
+
 import KakaoLogin from "./socials/KakaoLogin";
 import NaverLogin from "./socials/NaverLogin";
 import GoogleLogin from "./socials/Google"
@@ -28,6 +30,7 @@ const App = () => {
         <Route path="/google-login" element={<GoogleLogin />} />
         <Route path="/map" element={<Map />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
