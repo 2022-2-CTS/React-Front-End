@@ -19,17 +19,19 @@ const SignIn = () => {
 
   useEffect(() => {
     console.log(validToken)
-    axios.post('http://localhost:3004/api/index/alreadyLogined',{
-      validToken
-    }).then((res) => {
-      console.log(res.data)
-      if (localStorage.getItem("id") == res.data.id){
-        console.log("일치합니다.")
-        window.location.href = '/map'
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
+    if (validToken != null){
+      axios.post('http://localhost:3004/api/index/alreadyLogined',{
+        validToken
+      }).then((res) => {
+        console.log(res.data)
+        if (localStorage.getItem("id") == res.data.id){
+          console.log("일치합니다.")
+          window.location.href = '/map'
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }, [])
 
   function handlePasswordType(e){
