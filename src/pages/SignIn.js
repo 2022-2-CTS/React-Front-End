@@ -113,7 +113,7 @@ const SignIn = () => {
             <input type={pwType.type} name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" placeholder="비밀번호" 
               onChange={saveUserPw}
             />
-            <span class="absolute inset-y-0 right-0 my-4 mx-3" onClick={handlePasswordType}>
+            <span class="absolute inset-y-0 right-0 my-4 mx-3 flex items-center" onClick={handlePasswordType}>
               {pwType.visible ? <Visibility /> : <Visibility_off />}
             </span>
           </div>
