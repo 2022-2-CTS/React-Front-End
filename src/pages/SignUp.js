@@ -92,8 +92,11 @@ const Login = () => {
                 sendId : id,
                 sendPw : ciphertextPw,
             }).then((req) => {
-                console.log(req.body)
-                window.location.href='/'
+                console.log("왜 안돼!!")
+                console.log(req.data)
+                if(req.data == "가입완료"){
+                    window.location.href='/'
+                }
             }).catch((err) => {
                 console.log(err)
             })
