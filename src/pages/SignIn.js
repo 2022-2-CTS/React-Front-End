@@ -16,6 +16,7 @@ const SignIn = () => {
   });
   
   const validToken = localStorage.getItem("userToken")
+  const kakaoAccessToken = localStorage.getItem('kakaoLoginToken')
 
   useEffect(() => {
     console.log(validToken)
@@ -26,12 +27,32 @@ const SignIn = () => {
         console.log(res.data)
         if (localStorage.getItem("id") == res.data.id){
           console.log("일치합니다.")
-          window.location.href = '/map'
+          window.location.href='/map'
         }
       }).catch((err) => {
         console.log(err)
       })
     }
+    if(kakaoAccessToken != null){
+      axios.get(
+        "https://kapi.kakao.com/v1/user/access_token_info",
+        {
+          headers: {
+            Authorization: `Bearer ${kakaoAccessToken}`, // Bearer 토큰 포맷을 올바르게 설정합니다.
+          },
+        }
+      )
+        .then((response) => {
+          console.log(response.data); // 서버 응답의 데이터를 출력합니다.
+          if(response.data.api_type != "TokenInvalidError"){
+            window.location.href = '/map';
+          }
+        })
+        .catch((err) => {
+          console.log(err); // 오류가 발생한 경우 오류를 출력합니다.
+        });
+    }
+
   }, [])
 
   function handlePasswordType(e){
