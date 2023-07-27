@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import { ReactComponent as Previous } from "../img/icon/back.svg";
@@ -12,12 +13,14 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 const Detail = () => {
     let [heart, setHeart] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <React.Fragment>
             {/* Header (pre, head, heart) */}
             <div className="flex justify-between items-center m-5">
-                <Previous />
+                <Previous onClick={ () => navigate('/map') }
+                 />
                 <span className="text-lg font-medium">
                     상세 정보
                 </span>
@@ -30,7 +33,7 @@ const Detail = () => {
             <div className="flex flex-col m-auto justify-center w-5/6">
                 {/* poster */}
                 <img className=""
-                src="https://picsum.photos/600/800"/>
+                src="https://busandabom.net/images/contents/play_img_5354.jpg"/>
 
                 {/* event title */}
                 <div className="text-2xl my-2 font-bold">
