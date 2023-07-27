@@ -58,7 +58,8 @@ const Map = () => {
 
     const category = (categoryName, colorIndex) => {
         return (
-            <li className="flex items-center justify-center
+            <li key={ categoryName }
+            className="flex items-center justify-center
             whitespace-no-wrap text-center overflow-auto mt-2 h-full
             border-2
             no-underline inline-block bg-white mr-2 w-auto text-gray-700 font-normal
@@ -67,7 +68,7 @@ const Map = () => {
 
                 </div>
                 <div className="pb-[1.5px]">
-                    {categoryName}
+                    { categoryName }
                 </div>
             </li>
         )
@@ -79,8 +80,8 @@ const Map = () => {
             <div className="flex justify-center items-center">
                 <div className="fixed z-40 top-0">
                     <ul className="flex justify-center items-center">
-                        {categoryArray.map((item, index) => { return category(item, index) })}
-                    </ul>
+                        { categoryArray.map((item, index) => { return category(item, index) }) }
+                    </ul>``
                 </div>
             </div>
 
