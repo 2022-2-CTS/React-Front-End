@@ -32,17 +32,17 @@ const Login = () => {
   }
 
   return (
-    <div class="flex justify-center items-center text-centser min-h-screen">
-      <div class="">
-        <div class="pb-8 font-bold text-2xl">부산시 문화예술 지도</div>
-        <div class="grid grid-rows-4 gap-3">
-          <button onClick={local} class="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
-            <p class="text-white font-bold">문화</p>
+    <div className="flex justify-center items-center text-centser min-h-screen">
+      <div className="">
+        <div className="pb-8 font-bold text-2xl">부산시 문화예술 지도</div>
+        <div className="grid grid-rows-4 gap-3">
+          <button onClick={local} className="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
+            <p className="text-white font-bold">문화</p>
           </button>
-          <img onClick={loginForKakao} class="px-2 w-full" src="images/kakao_login_medium_narrow.png"></img>
-          <img onClick={loginForNaver} class="px-2 h-11 w-full" src="images/btnG_아이콘원형.png"></img>
-          <button onClick={loginForGoogle} class="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
-            <p class="text-white font-bold">구글</p>
+          <img onClick={loginForKakao} className="px-2 w-full" src="images/kakao_login_medium_narrow.png"></img>
+          <img onClick={loginForNaver} className="px-2 h-11 w-full" src="images/btnG_아이콘원형.png"></img>
+          <button onClick={loginForGoogle} className="mx-2 rounded border-solid border-2 border-indigo-500 bg-indigo-500">
+            <p className="text-white font-bold">구글</p>
           </button>
         </div>
       </div>
