@@ -7,6 +7,8 @@ import { ReactComponent as Heart } from "../img/icon/heart.svg";
 import { ReactComponent as HeartActive } from "../img/icon/heart_active.svg";
 import { ReactComponent as Location } from "../img/icon/location.svg";
 
+import SelectLocation from "../component/SelectLocation";
+
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
@@ -17,8 +19,16 @@ const Detail = () => {
     const location = useLocation();
     let eventInfo = { ...location.state }
 
+    let [test, setTest] = useState(false);
+    let [testResponse, setTestResponse] = useState("");
+
     return (
         <React.Fragment>
+            {/* TEST : 위치 선택 후, 장소 문자열을 반환하여 출력함 */}
+            <button onClick={ () => { setTest(!test) }}>( SELECT PAGE TEST )</button>
+            <div>location: { testResponse }</div>
+            { test ? <SelectLocation setTestResponse={setTestResponse}></SelectLocation> : null }
+
             {/* Header (pre, head, heart) */}
             <div className="flex justify-between items-center m-5">
                 <Previous onClick={ () => navigate('/map') }
