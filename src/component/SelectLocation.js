@@ -66,10 +66,13 @@ const SelectLocation = ({setTestResponse}) => {
 
 
             {/* complete button */}
-            <button className="bg-white h-[60px] w-screen
-            z-50 fixed bottom-0
-            flex items-center justify-between">
-                
+            <button className="bg-[#1F83EB] h-[60px] w-5/6 text-white font-medium text-xl
+            z-50 fixed bottom-0 ml-8 mb-4
+            rounded-xl
+            flex items-center justify-center m-auto">
+                <span className="
+                flex items-center justify-center"
+                >선택 완료</span>
             </button>
         </React.Fragment>
     );
