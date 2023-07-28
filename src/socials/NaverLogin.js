@@ -12,6 +12,17 @@ const NaverLogin = () => {
         }
     },[])
 
+    async function fetchNaverLoginToken(){
+        try{
+            const response = await axios.get('http://localhost:3004/api/index/naverLoginToken', {});
+            console.log(response);
+            localStorage.setItem('naverLoginToken', response.data);
+            window.location.href = '/map'
+        }catch (err){
+            console.log(err);
+        }
+    }
+
     const do_Login = () => {
         axios.post("http://localhost:3004/api/index/naverLogin",{
             code : loginCode,
@@ -19,7 +30,7 @@ const NaverLogin = () => {
         }).then((req) => {
             console.log(req.data);
             if (req.data == "로그인 성공!!"){
-                window.location.href = '/map'
+                fetchNaverLoginToken();
             }else{
                 window.location.href = '/'
                 console.log("로그인 실패")

@@ -17,6 +17,7 @@ const SignIn = () => {
   
   const validToken = localStorage.getItem("userToken")
   const kakaoAccessToken = localStorage.getItem('kakaoLoginToken')
+  const naverAccessToken = localStorage.getItem('naverLoginToken')
 
   useEffect(() => {
     console.log(validToken)
@@ -42,17 +43,27 @@ const SignIn = () => {
           },
         }
       )
-        .then((response) => {
-          console.log(response.data); // 서버 응답의 데이터를 출력합니다.
-          if(response.data.api_type != "TokenInvalidError"){
-            window.location.href = '/map';
-          }
-        })
-        .catch((err) => {
-          console.log(err); // 오류가 발생한 경우 오류를 출력합니다.
-        });
+      .then((response) => {
+        console.log(response.data); // 서버 응답의 데이터를 출력합니다.
+        if(response.data.code != -401){
+          window.location.href = '/map';
+        }
+      })
+      .catch((err) => {
+        console.log(err); // 오류가 발생한 경우 오류를 출력합니다.
+      });
     }
-
+    if(naverAccessToken != null){
+      axios.post("http://localhost:3004/api/index/naverLoginTokenAccess",{
+        naverAccessToken
+      }).then((res) => {
+        console.log(res.data)
+        if(res.data == "valid"){
+          window.location.href = '/map'
+        }
+      })
+      
+    }
   }, [])
 
   function handlePasswordType(e){
