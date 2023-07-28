@@ -45,7 +45,16 @@ const Map = () => {
 
                     // 마커 클릭이벤트 등록
                     kakao.maps.event.addListener(marker, 'click', function () {
-                        navigate('/detail');
+                        // 클릭한 마커가 갖고 있는 행사 정보를 함께 보내는 라우팅
+                        navigate('/detail', {
+                            state: {
+                                title: "METAPHORIC SCENERY : 은유적 풍경",
+                                location: "카린갤러리",
+                                duration: "2023.07.07 ~ 2023.08.27",
+                                time: "10:00 - 18:00 (월요일 휴무)",
+                                price: "무료"
+                            }
+                        });
                     });
                 }
             });

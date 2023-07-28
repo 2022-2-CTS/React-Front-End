@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 import { ReactComponent as Previous } from "../img/icon/back.svg";
@@ -14,6 +14,8 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 const Detail = () => {
     let [heart, setHeart] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    let eventInfo = { ...location.state }
 
     return (
         <React.Fragment>
@@ -38,7 +40,7 @@ const Detail = () => {
                 {/* event title */}
                 <div className="text-2xl my-2 font-bold">
                     <span>
-                        METAPHORIC SCENERY : 은유적 풍경
+                        { eventInfo.title }
                     </span>
                 </div>
 
@@ -47,7 +49,7 @@ const Detail = () => {
                     <Location className="m-1"
                     />
                     <span className="ml-1 font-semibold">
-                        카린갤러리
+                        { eventInfo.location }
                     </span>
                 </div>
 
@@ -57,7 +59,7 @@ const Detail = () => {
                         📌 기간
                     </div>
                     <div className="font-bold">
-                        2023.07.07 ~ 2023.08.27
+                        { eventInfo.duration }
                     </div>
                 </div>
                 
@@ -66,7 +68,7 @@ const Detail = () => {
                         📌 시간
                     </div>
                     <div className="font-bold">
-                        10:00 - 18:00 (월요일 휴무)
+                        { eventInfo.time }
                     </div>
                 </div>
                 
@@ -75,7 +77,7 @@ const Detail = () => {
                         📌 가격
                     </div>
                     <div className="font-bold">
-                        무료
+                        { eventInfo.price }
                     </div>
                 </div>
             </div>
