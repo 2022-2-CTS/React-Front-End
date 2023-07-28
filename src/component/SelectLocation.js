@@ -43,7 +43,8 @@ const SelectLocation = ({setTestResponse}) => {
                 centerLatlng = map.getCenter(); 
                 marker.setPosition(centerLatlng);
                 marker.setMap(map);
-
+                
+                // 컴포넌트 생성 시, 지도를 움직이지 않았을 때도 주소 문자열을 가져오도록 해야함
                 searchDetailAddrFromCoords(geocoder, centerLatlng, function(result, status) {
                     if (status === kakao.maps.services.Status.OK) {
                         // 도로명주소 or 지번주소 반환
