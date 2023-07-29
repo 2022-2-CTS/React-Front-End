@@ -14,7 +14,7 @@ const NaverLogin = () => {
 
     async function fetchNaverLoginToken(){
         try{
-            const response = await axios.get('http://localhost:3004/api/index/naverLoginToken', {});
+            const response = await axios.get('http://localhost:3004/api/login/naverLogin/naverLoginToken', {});
             console.log(response);
             localStorage.setItem('naverLoginToken', response.data);
             window.location.href = '/map'
@@ -24,7 +24,7 @@ const NaverLogin = () => {
     }
 
     const do_Login = () => {
-        axios.post("http://localhost:3004/api/index/naverLogin",{
+        axios.post("http://localhost:3004/api/login/naverLogin/naverLogin_",{
             code : loginCode,
             state : stateCode,
         }).then((req) => {

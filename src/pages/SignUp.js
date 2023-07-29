@@ -57,7 +57,7 @@ const Login = () => {
 
     function checkValidId(){
         console.log(id)
-        axios.post('http://localhost:3004/api/index/validCheck',{
+        axios.post('http://localhost:3004/api/login/appLogin/validCheck',{
             sendValidId : id,
         }).then((req) => {
             console.log(req.data)
@@ -88,7 +88,7 @@ const Login = () => {
             console.log(id)
             console.log(password)
             const ciphertextPw = crypto.AES.encrypt(password, 'culture').toString();
-            axios.post("http://localhost:3004/api/index/signup",{
+            axios.post("http://localhost:3004/api/login/appLogin/signup",{
                 sendId : id,
                 sendPw : ciphertextPw,
             }).then((req) => {

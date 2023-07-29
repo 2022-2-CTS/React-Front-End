@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import crypto from 'crypto-js'
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
 import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
@@ -18,11 +19,12 @@ const SignIn = () => {
   const validToken = localStorage.getItem("userToken")
   const kakaoAccessToken = localStorage.getItem('kakaoLoginToken')
   const naverAccessToken = localStorage.getItem('naverLoginToken')
-
+  const client_id = '432961785509-qqi0ut13397irei6m61up42os7bc59t3.apps.googleusercontent.com'
+  
   useEffect(() => {
     console.log(validToken)
     if (validToken != null){
-      axios.post('http://localhost:3004/api/index/alreadyLogined',{
+      axios.post('http://localhost:3004/api/login/appLogin/alreadyLogined',{
         validToken
       }).then((res) => {
         console.log(res.data)
@@ -47,6 +49,8 @@ const SignIn = () => {
         console.log(response.data); // 서버 응답의 데이터를 출력합니다.
         if(response.data.code != -401){
           window.location.href = '/map';
+        }else{
+          window.location.href = '/';
         }
       })
       .catch((err) => {
@@ -54,7 +58,7 @@ const SignIn = () => {
       });
     }
     if(naverAccessToken != null){
-      axios.post("http://localhost:3004/api/index/naverLoginTokenAccess",{
+      axios.post("http://localhost:3004/api/login/naverLogin/naverLoginTokenAccess",{
         naverAccessToken
       }).then((res) => {
         console.log(res.data)
@@ -93,7 +97,7 @@ const SignIn = () => {
     console.log(pw)
     const ciphertext = crypto.AES.encrypt(pw, 'culture').toString();
     console.log(ciphertext)
-    axios.post("http://localhost:3004/api/index/login",{
+    axios.post("http://localhost:3004/api/login/appLogin/login",{
       sendId : id,
       sendPw : ciphertext,
     }).then((req) => {
