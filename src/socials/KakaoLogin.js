@@ -13,7 +13,7 @@ const KakaoLogin = () => {
 
     async function fetchKakaoLoginToken() {
         try {
-            const response = await axios.get('http://localhost:3004/api/index/kakaoLoginToken', {});
+            const response = await axios.get('http://localhost:3004/api/login/kakaoLogin/kakaoLoginToken', {});
             console.log(response);
             localStorage.setItem("kakaoLoginToken", response.data);
             window.location.href = '/map';
@@ -23,7 +23,7 @@ const KakaoLogin = () => {
     }
 
     const do_Login = () => {
-        axios.post('http://localhost:3004/api/index/kakaoLogin',{
+        axios.post('http://localhost:3004/api/login/kakaoLogin/kakaoLogin',{
             code : loginCode
         })
         .then((req) => {
