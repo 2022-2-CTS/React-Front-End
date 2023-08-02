@@ -17,12 +17,12 @@ const SignIn = () => {
   });
   
   const validToken = localStorage.getItem("userToken")
-  const kakaoAccessToken = localStorage.getItem('kakaoLoginToken')
+  const kakaoAccessToken = localStorage.getItem('kakaoLoginJWT')
   const naverAccessToken = localStorage.getItem('naverLoginToken')
   const client_id = '432961785509-qqi0ut13397irei6m61up42os7bc59t3.apps.googleusercontent.com'
   
   useEffect(() => {
-    console.log(validToken)
+    //console.log(validToken)
     if (validToken != null){
       axios.post('http://localhost:3004/api/login/appLogin/alreadyLogined',{
         validToken
@@ -37,25 +37,17 @@ const SignIn = () => {
       })
     }
     if(kakaoAccessToken != null){
-      axios.get(
-        "https://kapi.kakao.com/v1/user/access_token_info",
-        {
-          headers: {
-            Authorization: `Bearer ${kakaoAccessToken}`, // Bearer 토큰 포맷을 올바르게 설정합니다.
-          },
+      axios.post('http://localhost:3004/api/login/kakaoLogin/alreadyLoginedKakao',{
+        kakaoAccessToken
+      }).then((res) => {
+        console.log(res.data)
+        if (localStorage.getItem("id") == res.data.id){
+          console.log("일치합니다.")
+          window.location.href='/map'
         }
-      )
-      .then((response) => {
-        console.log(response.data); // 서버 응답의 데이터를 출력합니다.
-        if(response.data.code != -401){
-          window.location.href = '/map';
-        }else{
-          window.location.href = '/';
-        }
+      }).catch((err) => {
+        console.log(err)
       })
-      .catch((err) => {
-        console.log(err); // 오류가 발생한 경우 오류를 출력합니다.
-      });
     }
     if(naverAccessToken != null){
       axios.post("http://localhost:3004/api/login/naverLogin/naverLoginTokenAccess",{

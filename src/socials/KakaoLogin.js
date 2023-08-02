@@ -11,26 +11,23 @@ const KakaoLogin = () => {
         }
     }, [])
 
-    async function fetchKakaoLoginToken() {
-        try {
-            const response = await axios.get('http://localhost:3004/api/login/kakaoLogin/kakaoLoginToken', {});
-            console.log(response);
-            localStorage.setItem("kakaoLoginToken", response.data);
-            window.location.href = '/map';
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    
+    // localStorage.setItem("kakaoLoginJWT", response.data);
+    
+
+        
+        
 
     const do_Login = () => {
         axios.post('http://localhost:3004/api/login/kakaoLogin/kakaoLogin',{
             code : loginCode
         })
         .then((req) => {
-            console.log(req.data);
-            if (req.data == "로그인 성공!!"){
+            console.log(req.data.token);
+            if (req.data.data == "로그인 성공!!"){
                 console.log("여기 들어왔어?");
-                fetchKakaoLoginToken();
+                localStorage.setItem("kakaoLoginJWT", req.data.token)
+                localStorage.setItem("id", req.data.kakaoNickname)
             }else{
                 window.location.href = '/'
                 console.log("로그인 실패")
