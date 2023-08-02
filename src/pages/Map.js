@@ -1,8 +1,16 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Nav from "../component/BottomNav";
+
+import MarkerMusical from "../img/icon/marker_musical_red.svg";
+import MarkerPlay from "../img/icon/marker_play_blue.svg";
+import MarkerExhibition from "../img/icon/marker_exhibition_green.svg";
+import MarkerConcert from "../img/icon/marker_concert_yellow.svg";
+
+const categoryArray = ["뮤지컬", "연극", "공연·전시", "콘서트"]
+const categoryColorArray = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"]
 
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
@@ -10,6 +18,14 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 const Map = () => {
     const navigate = useNavigate();
+    /*
+        현재 선택한 카테고리 index
+        0 : 뮤지컬
+        1 : 연극
+        2 : 공연·전시
+        3 : 콘서트
+    */
+    let [selectedCategoryIndex, setselectedCategoryIndex] = useState(0);
 
     useEffect(() => {
         // kakao.js가 load됐을 때 메서드 호출
@@ -37,7 +53,8 @@ const Map = () => {
                     // 검색 결과 좌표를 이용해 마커 그리기
                     var marker = new kakao.maps.Marker({
                         map: map,
-                        position: coords
+                        position: coords,
+                        image: new kakao.maps.MarkerImage(MarkerMusical, new kakao.maps.Size(55, 55))
                     });
 
                     // 지도 중심을 마커로 이동
@@ -62,22 +79,22 @@ const Map = () => {
 
     }, []);
 
-    const categoryArray = ["뮤지컬", "연극", "공연·전시", "콘서트"]
-    const categoryColorArray = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"]
 
     const category = (categoryName, colorIndex) => {
         return (
-            <li key={ categoryName }
-            className="flex items-center justify-center
-            whitespace-no-wrap text-center overflow-auto mt-2 h-full
-            border-2
-            no-underline inline-block bg-white mr-2 w-auto text-gray-700 font-normal
-            rounded-full px-2 py-1">
-                <div className={categoryColorArray[colorIndex] + ' w-2 h-2 m-1 rounded-full'}>
-
-                </div>
+            <li onClick={() => setselectedCategoryIndex(colorIndex)}
+                key={categoryName}
+                className="flex items-center justify-center
+        whitespace-no-wrap text-center overflow-auto mt-2 h-full
+        border-2
+        no-underline inline-block bg-white mr-2 w-auto text-gray-700 font-normal
+        rounded-full px-2 py-1
+        active:brightness-75">
+                {/* category color circle */}
+                <div className={categoryColorArray[colorIndex] + ' w-2 h-2 m-1 rounded-full'}></div>
+                {/* category name */}
                 <div className="pb-[1.5px]">
-                    { categoryName }
+                    {categoryName}
                 </div>
             </li>
         )
@@ -89,14 +106,13 @@ const Map = () => {
             <div className="flex justify-center items-center">
                 <div className="fixed z-40 top-0">
                     <ul className="flex justify-center items-center">
-                        { categoryArray.map((item, index) => { return category(item, index) }) }
+                        {categoryArray.map((item, index) => { return category(item, index) })}
                     </ul>``
                 </div>
             </div>
 
             {/* map */}
             <div id="map" className="w-screen h-screen"></div>
-
 
             {/* bottom nav bar */}
             <Nav />
