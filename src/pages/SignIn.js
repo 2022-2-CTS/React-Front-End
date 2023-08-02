@@ -58,7 +58,6 @@ const SignIn = () => {
           window.location.href = '/map'
         }
       })
-      
     }
   }, [])
 
