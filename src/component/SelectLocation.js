@@ -13,8 +13,22 @@ function searchDetailAddrFromCoords(geocoder, coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 }
 
+// 컴포넌트 생성 시, 지도를 움직이지 않았을 때도 주소 문자열을 가져오도록 함
+function setLocationForAddress(geocoder, setLocation, centerLatlng) {
+    searchDetailAddrFromCoords(geocoder, centerLatlng, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            // 도로명주소 or 지번주소 반환
+            let detailAddr = !!result[0].road_address ? 
+                            result[0].road_address.address_name : 
+                            result[0].address.address_name;
+                            
+            setLocation(detailAddr);
+        }
+    });
+}
+
 // setTestResponse 함수 : 부모 컴포넌트의 testResponse state의 setter
-const SelectLocation = ({setLocation, setSelectLocationToggle}) => {
+const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,36 +47,29 @@ const SelectLocation = ({setLocation, setSelectLocationToggle}) => {
 
             // 마커 생성
             const markerImage = new kakao.maps.MarkerImage(
-                LocationMarker, 
+                LocationMarker,
                 new kakao.maps.Size(55, 55)
             );
-            let marker = new kakao.maps.Marker({image: markerImage});
-            
+            let marker = new kakao.maps.Marker({ image: markerImage });
+
             // 이전 마커 흔적 clear
             marker.setMap(null);
-            
+
             // 중심 좌표 요청
-            let centerLatlng = map.getCenter(); 
+            let centerLatlng = map.getCenter();
             marker.setPosition(centerLatlng);
             marker.setMap(map);
 
+            setLocationForAddress(geocoder, setLocation, centerLatlng);
+
             // feat: 중심 좌표가 바뀔 때마다 trigger
-            kakao.maps.event.addListener(map, 'center_changed', function() {        
+            kakao.maps.event.addListener(map, 'center_changed', function () {
                 // 지도 중심좌표 얻기
-                centerLatlng = map.getCenter(); 
+                centerLatlng = map.getCenter();
                 marker.setPosition(centerLatlng);
                 marker.setMap(map);
-                
-                // 컴포넌트 생성 시, 지도를 움직이지 않았을 때도 주소 문자열을 가져오도록 해야함
-                searchDetailAddrFromCoords(geocoder, centerLatlng, function(result, status) {
-                    if (status === kakao.maps.services.Status.OK) {
-                        // 도로명주소 or 지번주소 반환
-                        let detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
-                        console.log(detailAddr);
-                        
-                        setLocation(detailAddr);
-                    }
-                });
+
+                setLocationForAddress(geocoder, setLocation, centerLatlng);
             });
         })
 
@@ -79,7 +86,7 @@ const SelectLocation = ({setLocation, setSelectLocationToggle}) => {
             z-50 fixed bottom-0 ml-8 mb-4
             rounded-xl
             flex items-center justify-center m-auto"
-            onClick={ () => setSelectLocationToggle(false) }>
+                onClick={() => setSelectLocationToggle(false)}>
                 <span className="flex items-center justify-center"
                 >선택 완료</span>
             </button>
