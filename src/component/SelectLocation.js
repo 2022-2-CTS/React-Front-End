@@ -14,7 +14,7 @@ function searchDetailAddrFromCoords(geocoder, coords, callback) {
 }
 
 // setTestResponse 함수 : 부모 컴포넌트의 testResponse state의 setter
-const SelectLocation = ({setTestResponse}) => {
+const SelectLocation = ({setLocation, setSelectLocationToggle}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const SelectLocation = ({setTestResponse}) => {
                         let detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
                         console.log(detailAddr);
                         
-                        setTestResponse(detailAddr);
+                        setLocation(detailAddr);
                     }
                 });
             });
@@ -75,9 +75,9 @@ const SelectLocation = ({setTestResponse}) => {
             <button className="bg-[#1F83EB] h-[60px] w-5/6 text-white font-medium text-xl
             z-50 fixed bottom-0 ml-8 mb-4
             rounded-xl
-            flex items-center justify-center m-auto">
-                <span className="
-                flex items-center justify-center"
+            flex items-center justify-center m-auto"
+            onClick={ () => setSelectLocationToggle(false) }>
+                <span className="flex items-center justify-center"
                 >선택 완료</span>
             </button>
         </React.Fragment>
