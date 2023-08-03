@@ -32,7 +32,10 @@ const SelectLocation = ({setLocation, setSelectLocationToggle}) => {
             const geocoder = new kakao.maps.services.Geocoder();
 
             // 마커 생성
-            const markerImage = new kakao.maps.MarkerImage(LocationMarker, new kakao.maps.Size(55, 55));
+            const markerImage = new kakao.maps.MarkerImage(
+                LocationMarker, 
+                new kakao.maps.Size(55, 55)
+            );
             let marker = new kakao.maps.Marker({image: markerImage});
             
             // 이전 마커 흔적 clear
