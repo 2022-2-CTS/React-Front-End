@@ -176,7 +176,7 @@ const Map = () => {
                 <div className="fixed z-40 top-0">
                     <ul className="flex justify-center items-center">
                         {categoryArray.map((item, index) => { return category(item, index) })}
-                    </ul>``
+                    </ul>
                 </div>
             </div>
 
