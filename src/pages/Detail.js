@@ -45,7 +45,7 @@ const Detail = () => {
                 </div>
 
                 {/* event place */}
-                <div className="flex items-center">
+                <div className="flex items-start">
                     <Location className="m-1"
                     />
                     <span className="ml-1 font-semibold">
