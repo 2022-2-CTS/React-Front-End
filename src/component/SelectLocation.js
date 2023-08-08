@@ -27,36 +27,10 @@ function setLocationForAddress(geocoder, setLocation, centerLatlng, setNowLocati
         }
     });
 }
-function createCustomOverlay(nowLocation, centerLatlng) {
-    let content = `
-        <div style="
-            background: #1F83EB;
-            text-align: center;
-            color: white;
-            padding: 10px 30px;
-            // width: 100%;
-            // margin-left: -50%;
-            margin-bottom: 200px;
-            border-radius: 8px;
-            font-weight: 200;
-        ">
-    ` + nowLocation +
-            `
-        </div>
-    `;
-
-    // 인포윈도우를 생성합니다
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: new kakao.maps.LatLng(centerLatlng.Ma, centerLatlng.La),
-        content: content
-    });
-
-    return customOverlay;
-}
 
 // setTestResponse 함수 : 부모 컴포넌트의 testResponse state의 setter
 const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     let [nowLocation, setNowLocation] = useState(null);
 
     useEffect(() => {
@@ -91,9 +65,6 @@ const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
 
             setLocationForAddress(geocoder, setLocation, centerLatlng, setNowLocation);
 
-            var customOverlay = createCustomOverlay(nowLocation, centerLatlng);
-            customOverlay.setMap(map);
-
             // feat: 중심 좌표가 바뀔 때마다 trigger
             kakao.maps.event.addListener(map, 'center_changed', function () {
                 // 지도 중심좌표 얻기
@@ -102,31 +73,28 @@ const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
                 marker.setMap(map);
 
                 setLocationForAddress(geocoder, setLocation, centerLatlng, setNowLocation);
-                customOverlay.setMap(null);
-                // console.log(customOverlay.n.La);
-                
-                customOverlay = createCustomOverlay(nowLocation, centerLatlng);
-                customOverlay.setMap(map);
             });
         })
 
     }, []);
 
     return (
-        <React.Fragment>
+        <React.Fragment className="m-auto flex flex-col items-center">
             {/* map */}
             <div id="map" className="w-screen h-screen"></div>
 
             {/* complete button */}
-            <div className="absolute bottom-0 bg-white">
-                {nowLocation}
-            </div>
-            <button className="bg-[#1F83EB] h-[60px] w-5/6 text-white font-medium text-xl
-            z-50 fixed bottom-0 ml-8 mb-4
+            <button className="bg-[#1F83EB] h-[60px] w-5/6 
+            z-50 fixed bottom-5
             rounded-xl
-            flex items-center justify-center m-auto"
+            flex flex-col items-center justify-center m-auto"
                 onClick={() => setSelectLocationToggle(false)}>
-                <div className="flex items-center justify-center"
+                <div className="flex items-center justify-center
+                text-white font-light text-sm">
+                    {nowLocation}
+                </div>
+                <div className="flex items-center justify-center 
+                text-white font-medium text-xl"
                 >선택 완료</div>
             </button>
         </React.Fragment>
