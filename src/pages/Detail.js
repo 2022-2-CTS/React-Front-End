@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 import '../App.css';
 
@@ -8,10 +7,6 @@ import { ReactComponent as Previous } from "../img/icon/back.svg";
 import { ReactComponent as Heart } from "../img/icon/heart.svg";
 import { ReactComponent as HeartActive } from "../img/icon/heart_active.svg";
 import { ReactComponent as Location } from "../img/icon/location.svg";
-
-// 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
-// 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
-const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 const Detail = () => {
     let [heart, setHeart] = useState(false);
@@ -38,7 +33,7 @@ const Detail = () => {
             {/* content */}
             <div className="flex flex-col m-auto justify-center w-5/6">
                 {/* poster */}
-                <img className=""
+                <img alt="img"
                 src="https://busandabom.net/images/contents/play_img_5354.jpg"/>
 
                 {/* event title */}

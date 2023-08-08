@@ -23,7 +23,7 @@ const Nav = () => {
     const ChangeButtonColor = pageNum => {
         // 배열 변경
         let buttonColorCopy = buttonColor;
-        buttonColorCopy.map(item => { item = false; });
+        buttonColorCopy.map((item) => item = false);
         buttonColorCopy[pageNum] = true;
         setButtonColor(buttonColorCopy);
 
@@ -37,6 +37,7 @@ const Nav = () => {
             if(location.pathname === item) {
                 ChangeButtonColor(index);
             }
+            return 0;
         });
     }, []);
 

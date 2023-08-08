@@ -44,6 +44,7 @@ const PostMap = (postId, postLocation) => {
           image: markerImage
         });
 
+        marker.setMap(map);
         map.setCenter(coords);
       }
     });

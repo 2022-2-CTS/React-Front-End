@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import LocationMarker from "../img/icon/location_select.svg";
 
@@ -30,7 +29,6 @@ function setLocationForAddress(geocoder, setLocation, centerLatlng, setNowLocati
 
 // setTestResponse 함수 : 부모 컴포넌트의 testResponse state의 setter
 const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
-    const navigate = useNavigate();
     let [nowLocation, setNowLocation] = useState(null);
 
     useEffect(() => {
