@@ -8,7 +8,7 @@ import LocationMarker from "../img/icon/location_select.svg";
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 function write() {
-  window.location.href = "./shareinfo/write"
+  window.location.href = "./post/write"
 }
 
 /*
