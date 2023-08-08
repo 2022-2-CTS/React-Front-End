@@ -79,24 +79,26 @@ const SelectLocation = ({ setLocation, setSelectLocationToggle }) => {
     }, []);
 
     return (
-        <React.Fragment className="m-auto flex flex-col items-center">
-            {/* map */}
-            <div id="map" className="w-screen h-screen"></div>
+        <React.Fragment>
+            <div className="m-auto flex flex-col items-center">
+                {/* map */}
+                <div id="map" className="w-screen h-screen"></div>
 
-            {/* complete button */}
-            <button className="bg-[#1F83EB] h-[60px] w-5/6 
+                {/* complete button */}
+                <button className="bg-[#1F83EB] h-[60px] w-5/6 
             z-50 fixed bottom-5
             rounded-xl
             flex flex-col items-center justify-center m-auto"
-                onClick={() => setSelectLocationToggle(false)}>
-                <div className="flex items-center justify-center
+                    onClick={() => setSelectLocationToggle(false)}>
+                    <div className="flex items-center justify-center
                 text-white font-light text-sm">
-                    {nowLocation}
-                </div>
-                <div className="flex items-center justify-center 
+                        {nowLocation}
+                    </div>
+                    <div className="flex items-center justify-center 
                 text-white font-medium text-xl"
-                >선택 완료</div>
-            </button>
+                    >선택 완료</div>
+                </button>
+            </div>
         </React.Fragment>
     );
 };
