@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
+import '../App.css';
+
 import { ReactComponent as Previous } from "../img/icon/back.svg";
 import { ReactComponent as Heart } from "../img/icon/heart.svg";
 import { ReactComponent as HeartActive } from "../img/icon/heart_active.svg";
@@ -26,7 +28,9 @@ const Detail = () => {
                 <span className="text-lg font-medium">
                     상세 정보
                 </span>
-                { heart ? <HeartActive onClick={ () => setHeart(!heart) } /> : <Heart onClick={ () => setHeart(!heart) } /> }
+                { heart ? 
+                <HeartActive className="animated-heart" onClick={ () => setHeart(!heart) } /> 
+                : <Heart onClick={ () => setHeart(!heart) } /> }
             </div>
 
             <hr className="m-2 mb-6"/>
