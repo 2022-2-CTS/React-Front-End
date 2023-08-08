@@ -17,7 +17,7 @@ const Nav = () => {
     let [buttonColor, setButtonColor] = useState([false, false, false]);
 
     // variable
-    let pageName = ['/home/shareinfo', '/map', '/mypage']
+    let pageName = ['/post', '/map', '/mypage']
 
     // function
     const ChangeButtonColor = pageNum => {

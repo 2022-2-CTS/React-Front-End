@@ -23,11 +23,14 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/home/shareinfo" element={<ShareInfo />} />
-        <Route path="/home/shareinfo/write" element={<ShareInfoWrite />} />
+        
         <Route path="/kakao-login" element={<KakaoLogin />} />
         <Route path="/naver-login" element={<NaverLogin />} />
         <Route path="/google-login" element={<GoogleLogin />} />
+
+        <Route path="/post" element={<ShareInfo />} />
+        <Route path="/post/write" element={<ShareInfoWrite />} />
+        
         <Route path="/map" element={<Map />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/detail" element={<Detail />} />
