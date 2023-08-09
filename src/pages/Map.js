@@ -42,7 +42,7 @@ function test(navigate, map, geocoder, data, markerImage) {
                 });
 
                 // 지도 중심을 마커로 이동
-                map.setCenter(coords);
+                // map.setCenter(coords);
 
                 // 마커 클릭이벤트 등록
                 kakao.maps.event.addListener(marker, 'click', function () {
@@ -83,6 +83,10 @@ const Map = () => {
     const categoryArray = ["뮤지컬", "연극", "공연·전시", "콘서트"];
     const categoryColorArray = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"];
 
+    // 현재 위치
+    let [myLat, setMyLat] = useState(null);
+    let [myLng, setMyLng] = useState(null);
+
     useEffect(() => {
         // getEventInfo(
         //     setMusicalsData,
@@ -94,8 +98,19 @@ const Map = () => {
         // kakao.js가 load됐을 때 메서드 호출
         kakao.maps.load(() => {
             const container = document.getElementById("map");
+
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    let lat = position.coords.latitude, // 위도
+                        lng = position.coords.longitude; // 경도
+
+                    setMyLat(lat);
+                    setMyLng(lng);
+                });
+            }
+
             const options = {
-                center: new kakao.maps.LatLng(35.14932, 129.11462, 16),
+                center: new kakao.maps.LatLng(myLat, myLng, 16),
                 level: 6,
             };
 
@@ -146,7 +161,7 @@ const Map = () => {
             // });
         });
 
-    }, []);
+    }, [myLat, myLng]);
 
 
     const category = (categoryName, colorIndex) => {
