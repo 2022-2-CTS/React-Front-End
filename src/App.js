@@ -10,8 +10,8 @@ import Map from "./pages/Map";
 import MyPage from "./pages/MyPage";
 import Detail from "./pages/Detail";
 
-import ShareInfo from "./info/ShareInfo";
-import ShareInfoWrite from "./info/ShareInfoWrite";
+import Post from "./post/Post";
+import PostWrite from "./post/PostWrite";
 
 import KakaoLogin from "./socials/KakaoLogin";
 import NaverLogin from "./socials/NaverLogin";
@@ -29,8 +29,8 @@ const App = () => {
         <Route path="/naver-login" element={<NaverLogin />} />
         <Route path="/google-login" element={<GoogleLogin />} />
 
-        <Route path="/post" element={<ShareInfo />} />
-        <Route path="/post/write" element={<ShareInfoWrite />} />
+        <Route path="/post" element={<Post />} />
+        <Route path="/post/write" element={<PostWrite/>} />
         
         <Route path="/map" element={<Map />} />
         <Route path="/mypage" element={<MyPage />} />
