@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import Intro from "./pages/Intro";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Map from "./pages/Map";
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Intro />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         
