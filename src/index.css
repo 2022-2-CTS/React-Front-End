@@ -18,6 +18,17 @@ code {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+@font-face {
+  font-family: 'HakgyoansimWoojuR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo-font {
+  font-family: 'HakgyoansimWoojuR';
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

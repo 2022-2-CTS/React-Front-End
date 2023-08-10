@@ -7,6 +7,9 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
+    backgroundImage: {
+      wave: "url('./img/icon/wave.svg')",
+    },
     extend: {
     },
   },
