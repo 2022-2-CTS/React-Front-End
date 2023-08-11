@@ -191,8 +191,8 @@ const SignIn = () => {
 
               {/* social login img */}
               <div className="flex justify-center items-center -my-6">
-                <img onClick={loginForKakao} className="w-1/6 mr-4" src="images/kakao_login_circle.png"></img>
-                <img onClick={loginForNaver} className="w-1/6" src="images/btnG_아이콘원형.png"></img>
+                <img onClick={loginForKakao} className="w-1/6 mr-4 max-w-xs" src="images/kakao_login_circle.png"></img>
+                <img onClick={loginForNaver} className="w-1/6 max-w-xs" src="images/btnG_아이콘원형.png"></img>
                 {/* <img onClick={loginForGoogle} className="w-10" src="images/pngwing.com.png"></img> */}
               </div>
             </div>

@@ -5,6 +5,7 @@ import crypto from 'crypto-js';
 const Login = () => {
 
     const [id, setId] = useState('')
+    const [saveId, setSaveId] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
     const [idValidCheck, setIdValidCheck] = useState(false)
@@ -18,6 +19,9 @@ const Login = () => {
     // const finish = idValidCheck == passwordMatch;
 
     useEffect(() => {
+        
+        setFinish(false)
+
         if (password == passwordConfirm){
             setPasswordMatch(true);
             console.log(password)
@@ -45,6 +49,11 @@ const Login = () => {
 
     function saveUserId(event){
         setId(event.target.value)
+        if(saveId != event.target.value){
+            setIdValidCheck(false)
+            setIdButtonHandler('아이디 중복 확인을 눌러주세요')
+            console.log(idValidCheck)
+        }
     }
 
     function saveUserPw(event){
@@ -57,6 +66,7 @@ const Login = () => {
 
     function checkValidId(){
         console.log(id)
+        console.log(saveId)
         axios.post('http://localhost:3004/api/login/appLogin/validCheck',{
             sendValidId : id,
         }).then((req) => {
@@ -66,6 +76,7 @@ const Login = () => {
                 console.log("오!!")
                 if (id != ''){
                     setIdButtonHandler('사용할 수 있는 아이디 입니다.')
+                    setSaveId(id)
                 }else{
                     setIdButtonHandler('아이디 중복 확인을 눌러주세요')
                 }
@@ -159,8 +170,7 @@ const Login = () => {
                             <p className="font-bold text-xl text-white">가입 완료</p>
                         </button>
                         :
-                        <div className="flex justify-center align-center rounded-lg border-solid border-2 border-indigo-200 bg-indigo-200 w-full py-2"
-                        >
+                        <div className="flex justify-center align-center rounded-lg border-solid border-2 border-indigo-200 bg-indigo-200 w-full py-2">
                             <p className="font-bold text-xl text-white">가입 완료</p>
                         </div>
                     }
