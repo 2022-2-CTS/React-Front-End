@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../img/icon/logo.svg";
-import { ReactComponent as Wave } from "../img/icon/wave.svg";
 
 const Intro = () => {
     const navigate = useNavigate();
@@ -10,7 +9,7 @@ const Intro = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             navigate('/signin');
-        }, 3500)
+        }, 3500);
 
         // return () => {
         //     clearTimeout(timeout)
