@@ -6,8 +6,11 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
 import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
 import { ReactComponent as Logo } from "../img/icon/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+
+  const navigate = useNavigate()
 
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
@@ -19,7 +22,7 @@ const SignIn = () => {
 
   const validToken = localStorage.getItem("userToken")
   const kakaoAccessToken = localStorage.getItem('kakaoLoginJWT')
-  const naverAccessToken = localStorage.getItem('naverLoginToken')
+  const naverAccessToken = localStorage.getItem('naverLoginJWT')
   const client_id = '432961785509-qqi0ut13397irei6m61up42os7bc59t3.apps.googleusercontent.com'
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const SignIn = () => {
         console.log(res.data)
         if (localStorage.getItem("id") == res.data.id) {
           console.log("일치합니다.")
-          window.location.href = '/map'
+          navigate('/map')
         }
       }).catch((err) => {
         console.log(err)
@@ -44,20 +47,23 @@ const SignIn = () => {
         console.log(res.data)
         if (localStorage.getItem("id") == res.data.id) {
           console.log("일치합니다.")
-          window.location.href = '/map'
+          navigate('/loading')
         }
       }).catch((err) => {
         console.log(err)
       })
     }
     if (naverAccessToken != null) {
-      axios.post("http://localhost:3004/api/login/naverLogin/naverLoginTokenAccess", {
+      axios.post("http://localhost:3004/api/login/naverLogin/alreadyLoginedNaver", {
         naverAccessToken
       }).then((res) => {
         console.log(res.data)
-        if (res.data == "valid") {
-          window.location.href = '/map'
+        if (localStorage.getItem("id") == res.data.id) {
+          console.log("일치합니다.")
+          navigate('/loading')
         }
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }, [])
@@ -95,7 +101,7 @@ const SignIn = () => {
     }).then((req) => {
       console.log(req.data)
       if (req.data != "fail") {
-        window.location.href = '/loading'
+        navigate('/loading')
         localStorage.setItem("userToken", req.data.token)
         localStorage.setItem("id", id)
       }
@@ -111,9 +117,6 @@ const SignIn = () => {
     window.location.href = kakaoURL
   }
 
-  const code = new URL(window.location.href).searchParams.get("code");
-  // console.log(code)
-
 
   const naver_client_id = 'o9JmjRrP1GmmANohGaH1'
   const callback_uri = 'http://localhost:3000/naver-login'
@@ -121,10 +124,6 @@ const SignIn = () => {
 
   function loginForNaver() {
     window.location.href = naverURL
-  }
-
-  function loginForGoogle() {
-    window.location.href = './google-login'
   }
 
   return (

@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const KakaoLogin = () => {
     
+    const navigate = useNavigate()
+
     const loginCode = new URL(window.location.href).searchParams.get('code')
     
     useEffect(() => {
@@ -10,13 +13,6 @@ const KakaoLogin = () => {
             do_Login()
         }
     }, [])
-
-    
-    // localStorage.setItem("kakaoLoginJWT", response.data);
-    
-
-        
-        
 
     const do_Login = () => {
         axios.post('http://localhost:3004/api/login/kakaoLogin/kakaoLogin',{
@@ -28,19 +24,14 @@ const KakaoLogin = () => {
                 console.log("여기 들어왔어?");
                 localStorage.setItem("kakaoLoginJWT", req.data.token)
                 localStorage.setItem("id", req.data.kakaoNickname)
+                navigate('/loading')
             }else{
-                window.location.href = '/'
+                navigate('/signin')
                 console.log("로그인 실패")
             }
         })
         .catch(err => console.log(err))
     }
-
-    return(
-        <div>
-            { loginCode } 
-        </div>
-    );
 };
 
 export default KakaoLogin;

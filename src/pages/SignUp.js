@@ -106,7 +106,7 @@ const Login = () => {
                 console.log("왜 안돼!!")
                 console.log(req.data)
                 if(req.data == "가입완료"){
-                    window.location.href='/'
+                    window.location.href='/signin'
                 }
             }).catch((err) => {
                 console.log(err)
