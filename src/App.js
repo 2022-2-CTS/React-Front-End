@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Map from "./pages/Map";
 import MyPage from "./pages/MyPage";
 import Detail from "./pages/Detail";
+import RegisterNickname from "./pages/RegisterNickname";
 
 import Post from "./post/Post";
 import PostWrite from "./post/PostWrite";
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/loading" element={<Loading />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/register-nickname" element={<RegisterNickname />} />
         
         <Route path="/kakao-login" element={<KakaoLogin />} />
         <Route path="/naver-login" element={<NaverLogin />} />

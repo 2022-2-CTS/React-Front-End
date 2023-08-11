@@ -24,6 +24,7 @@ const KakaoLogin = () => {
                 console.log("여기 들어왔어?");
                 localStorage.setItem("kakaoLoginJWT", req.data.token)
                 localStorage.setItem("id", req.data.kakaoNickname)
+                localStorage.setItem("registerType", "KAKAO")
                 navigate('/loading')
             }else{
                 navigate('/signin')

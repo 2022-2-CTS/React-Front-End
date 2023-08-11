@@ -102,6 +102,7 @@ const SignIn = () => {
       console.log(req.data)
       if (req.data != "fail") {
         navigate('/loading')
+        localStorage.setItem("registerType", "USER")
         localStorage.setItem("userToken", req.data.token)
         localStorage.setItem("id", id)
       }
@@ -195,7 +196,6 @@ const SignIn = () => {
                 {/* <img onClick={loginForGoogle} className="w-10" src="images/pngwing.com.png"></img> */}
               </div>
             </div>
-
           </div>
         </div>
       </div>
