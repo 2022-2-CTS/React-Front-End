@@ -131,7 +131,7 @@ const SignIn = () => {
     <React.Fragment>
       {/* wave (배경) */}
       <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
-        <div className="flex justify-center items-center text-center h-screen">
+        <div className="flex justify-center items-center text-center h-screen fade">
           <div className="">
             {/* Title */}
             <div className="w-1/2 m-auto">

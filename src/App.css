@@ -14,6 +14,20 @@
   }
 }
 
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .animated-heart {
   animation: heart 1s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.fade {
+  animation: fade 1s;
 }
