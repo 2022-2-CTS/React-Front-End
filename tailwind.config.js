@@ -11,6 +11,9 @@ module.exports = {
       wave: "url('./img/icon/wave.svg')",
     },
     extend: {
+      boxShadow: {
+        'nav': '0px -10px 30px 3px rgba(0, 0, 0, 0.15)'
+      }
     },
   },
   plugins: [

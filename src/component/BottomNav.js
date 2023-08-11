@@ -45,7 +45,8 @@ const Nav = () => {
         <React.Fragment>
             <div className="bg-white h-[60px] w-screen
             z-50 fixed bottom-0
-            flex items-center justify-between">
+            flex items-center justify-between
+            shadow-nav">
 
                     <div className="ml-8"
                         onClick={ () => ChangeButtonColor(0) }>
