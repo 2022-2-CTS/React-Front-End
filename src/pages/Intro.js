@@ -22,7 +22,7 @@ const Intro = () => {
                 {/* wave (배경) */}
                 <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
                     {/* logo (갈매기) */}
-                    <div className="w-1/2 fade">
+                    <div className="w-1/2 animated-fade">
                         <Logo className="m-auto w-2/4 h-full mb-2" />
                         <div className="logo-font text-center text-2xl
                         tracking-[.5em] -mr-3

@@ -95,7 +95,7 @@ const SignIn = () => {
     }).then((req) => {
       console.log(req.data)
       if (req.data != "fail") {
-        window.location.href = '/map'
+        window.location.href = '/loading'
         localStorage.setItem("userToken", req.data.token)
         localStorage.setItem("id", id)
       }
@@ -131,7 +131,7 @@ const SignIn = () => {
     <React.Fragment>
       {/* wave (배경) */}
       <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
-        <div className="flex justify-center items-center text-center h-screen fade">
+        <div className="flex justify-center items-center text-center h-screen animated-fade">
           <div className="">
             {/* Title */}
             <div className="w-1/2 m-auto">

@@ -24,10 +24,39 @@
   }
 }
 
+@keyframes translate_x {
+  0% {
+    transform: translateX(calc(-210%));
+  }
+
+  to {
+    transform: translateX(calc(190%));
+  }
+}
+
+@keyframes loading_bar_animation {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
 .animated-heart {
   animation: heart 1s cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-.fade {
+.animated-fade {
   animation: fade 1s;
+}
+
+.load_seagull {
+  animation: translate_x 5s infinite ease-in-out;
+}
+
+.animated-load-bar {
+  animation: loading_bar_animation 5s infinite ease-in-out;
 }

@@ -4,6 +4,7 @@ import "./index.css";
 
 // import Home from "./pages/Home";
 import Intro from "./pages/Intro";
+import Loading from "./pages/Loading";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Map from "./pages/Map";
@@ -22,6 +23,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Intro />} />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         
