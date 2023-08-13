@@ -45,6 +45,18 @@
   }
 }
 
+@keyframes scale {
+  0% {
+    scale: 0.8;
+  }
+  30% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1.0;
+  }
+}
+
 .animated-heart {
   animation: heart 1s cubic-bezier(0.4, 0, 0.6, 1);
 }
@@ -59,4 +71,8 @@
 
 .animated-load-bar {
   animation: loading_bar_animation 5s infinite ease-in-out;
+}
+
+.animated-scale {
+  animation: scale 0.7s ease-in-out;
 }

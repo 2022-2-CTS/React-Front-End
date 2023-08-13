@@ -50,17 +50,23 @@ const Nav = () => {
 
                     <div className="ml-8"
                         onClick={ () => ChangeButtonColor(0) }>
-                        { !buttonColor[0] ? <Board></Board> : <BoardActive></BoardActive> }
+                        { !buttonColor[0] ? 
+                        <Board /> : 
+                        <BoardActive className="animated-scale"/> }
                     </div>
 
                     <div className="m-8"
                         onClick={ () => ChangeButtonColor(1) }>
-                        { !buttonColor[1] ? <Home></Home> : <HomeActive></HomeActive> }
+                        { !buttonColor[1] ? 
+                        <Home /> : 
+                        <HomeActive className="animated-scale"/> }
                     </div>
 
                     <div className="mr-8"
                         onClick={ () => ChangeButtonColor(2) }>
-                        { !buttonColor[2] ? <MyPage></MyPage> : <MyPageActive></MyPageActive> }
+                        { !buttonColor[2] ? 
+                        <MyPage /> : 
+                        <MyPageActive className="animated-scale"/> }
                     </div>
 
             </div>
