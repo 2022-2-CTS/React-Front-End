@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../img/icon/logo.svg";
 
 const RegisterNickname = () => {
+
+    const navigate = useNavigate();
+
     const [nickname, setNickname] = useState('')
 
     function changeNicknameHandler(event) {
@@ -22,6 +26,7 @@ const RegisterNickname = () => {
             nickname: nickname
         }).then((req) => {
             console.log(req.data)
+            navigate('/loading')
         }).catch((err) => {
             console.log(err)
         })

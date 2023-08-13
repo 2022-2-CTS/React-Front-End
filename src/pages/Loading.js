@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,10 +7,37 @@ import { ReactComponent as Logo } from "../img/icon/logo.svg";
 const Loading = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
+    function delay(){
         const timeout = setTimeout(() => {
             navigate('/map');
         }, 4900);
+    }
+
+    function nickname(){
+        const timeout = setTimeout(() => {
+            navigate('/register-nickname');
+        }, 4900);
+    }
+
+    useEffect(() => {
+
+        var registerType = localStorage.getItem("registerType");
+        var userId = localStorage.getItem("id");
+
+        axios.post("http://localhost:3004/api/mydata/nickname/checkNickname", {
+            registerType : registerType,
+            userId : userId
+        }).then((req) => {
+            console.log(req.data)
+            console.log(req.data)
+            if(req.data == "exist"){
+                delay();
+            }else{
+                nickname();
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
 
         // return () => {
         //     clearTimeout(timeout)
