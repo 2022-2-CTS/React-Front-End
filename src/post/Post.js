@@ -4,6 +4,8 @@ import axios from 'axios';
 import { ReactComponent as Write } from "../img/icon/write.svg";
 import LocationMarker from "../img/icon/location_select.svg";
 
+import Nav from "../component/BottomNav";
+
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
@@ -62,7 +64,8 @@ let post = [1, 2, 3, 4, 5]
 
 const ShareInfo = () => {
 
-  const categoryColorArray = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"];
+  const categoryColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
+  //지금당장 , 어제갔다왔음, 오늘하더라, 내일도한다
 
   return (
     <React.Fragment>
@@ -79,8 +82,7 @@ const ShareInfo = () => {
                   <div className="text-sm -mt-1" >2023-07-12</div>
                 </div>
                 <div className="rounded-full border-2 w-1/3 text-sm flex justify-center items-center h-8 mt-2">
-                <div className={categoryColorArray[0] + ' w-3 h-3 m-1 rounded-full'}></div>
-                  <span className="rounded-full"></span>
+                  <div className={categoryColorArray[0] + ' w-3 h-3 m-1 rounded-full'}></div>
                   오늘하더라
                 </div>
               </div>
@@ -97,7 +99,9 @@ const ShareInfo = () => {
           )
         })
       }
-      <Write className="fixed bottom-0 right-0" onClick={write} ></Write>
+      <Write className="fixed bottom-[60px] right-0" onClick={write} ></Write>
+      <div className="h-[60px]"></div>
+      <Nav />
     </React.Fragment>
   );
 };
