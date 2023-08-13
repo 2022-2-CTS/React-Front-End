@@ -14,6 +14,9 @@ import MarkerConcert from "../img/icon/marker_concert_yellow.svg";
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
+// 카테고리별로 덮어씌울 행사 마커
+var markerArray = []
+
 // 행사 목록 요청 API 호출
 async function getEventInfoRequest(url, setter) {
     await axios.get(url)
@@ -32,6 +35,11 @@ async function getEventInfo(setter, url) {
 }
 
 function setEventMarker(navigate, map, geocoder, data, markerImage) {
+    if (markerArray.length > 0) {
+        for (let i = 0; i < markerArray.length; i++) {
+            markerArray[i].setMap(null);
+        }
+    }
     for (let i = 0; i < data.length; i++) {
         geocoder.addressSearch(data[i].location, function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
@@ -61,6 +69,8 @@ function setEventMarker(navigate, map, geocoder, data, markerImage) {
                         }
                     });
                 });
+
+                markerArray.push(marker);
             }
         });
     }
@@ -232,7 +242,7 @@ const Map = () => {
             </div>
 
             {/* map */}
-            <div id="map" className="w-screen h-screen"></div>
+            <div id="map" className="animated-fade w-screen h-screen"></div>
 
             {/* bottom nav bar */}
             <Nav />
