@@ -24,11 +24,9 @@ const ShareInfoWrite = () => {
       {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
         setLocation={setLocation}
         setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
-
       <div className="flex justify-center items-center text-2xl my-3">정보작성</div>
+      <div className="border-b-2 border-d9d9d9 w-11/12 m-auto"/>
       <div className="w-5/6 m-auto">
-
-        <div className="border-b-2 border-d9d9d9" />
 
         <div className="">
           <div className=" my-3 text-xl">행사제목</div>

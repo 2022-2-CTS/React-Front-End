@@ -74,7 +74,7 @@ const ShareInfo = () => {
       {
         post.map((index) => {
           return (
-            <div key={index} className="w-5/6 m-auto">
+            <div key={index} className="w-11/12 m-auto">
               <div className="border-b-2 border-d9d9d9"></div>
               <div className="flex justify-between my-3">
                 <div className="">
