@@ -31,8 +31,11 @@ const ShareInfoWrite = () => {
 
         <div className="w-5/6 m-auto my-3 text-xl">위치</div>
         <div className="flex w-5/6 m-auto">
-          <div className=" bg-white border border-slate-300 rounded-lg w-full"> {location}</div>
-          <Position className="w-1/4" onClick={() => setSelectLocationToggle(!selectLocationToggle)}></Position>
+          <div className="bg-white border border-slate-300 rounded-lg w-full">
+            {location}
+          </div>
+          <Position className="drop-shadow-position w-10 ml-2" 
+          onClick={() => setSelectLocationToggle(!selectLocationToggle)} />
         </div>
 
         <div class="grid grid-cols-4 gap-5 w-5/6 m-auto mt-8">
