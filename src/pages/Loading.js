@@ -7,9 +7,9 @@ const Loading = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // const timeout = setTimeout(() => {
-        //     navigate('/map');
-        // }, 4900);
+        const timeout = setTimeout(() => {
+            navigate('/map');
+        }, 4900);
 
         // return () => {
         //     clearTimeout(timeout)
