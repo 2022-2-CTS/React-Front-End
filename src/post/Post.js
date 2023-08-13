@@ -62,27 +62,35 @@ let post = [1, 2, 3, 4, 5]
 
 const ShareInfo = () => {
 
+  const categoryColorArray = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500"];
+
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center text-xl">해운대구</div>
-      <div className="border-b-2 border-d9d9d9"></div>
+      <div className="flex justify-center items-center text-xl my-3">해운대구</div>
 
       {
         post.map((index) => {
           return (
-            <div key={index}>
-              <div>
-                <div className="inline-flex">행사이름</div>
-                <div className="inline-block">태그</div>
-                <div className="inline-block">작성일</div>
+            <div key={index} className="w-5/6 m-auto">
+              <div className="border-b-2 border-d9d9d9"></div>
+              <div className="flex justify-between my-3">
+                <div className="">
+                  <div className="text-xl">이것은 행사 이름입니다</div>
+                  <div className="text-sm -mt-1" >2023-07-12</div>
+                </div>
+                <div className="rounded-full border-2 w-1/3 text-sm flex justify-center items-center h-8 mt-2">
+                <div className={categoryColorArray[0] + ' w-3 h-3 m-1 rounded-full'}></div>
+                  <span className="rounded-full"></span>
+                  오늘하더라
+                </div>
               </div>
               <div
-              className="flex justify-center items-center w-3/4 h-48 bg-indigo-200 place-center">
-                  {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
-                  {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
+                className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
+                {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
+                {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
               </div>
-              <div>
-                글내용
+              <div className="text-sm my-3">
+                행사내용입니다.벌써 시인의 밤이 별 사랑과 헤일 가난한 내 때 봅니다. 부끄러운 너무나 계절이 있습니다. 하나에 북간도에 같이 경, 너무나 계십니다. 별들을 헤일 너무나 아침이 당신은 별이 있습니다. 라이너 가을로 차 나는 봅니다. 차 내 보고, 이름과 그리고 봅니다. 하나에 아름다운 그러나 어머니 별을 버리었습니다.
               </div>
               <br />
             </div>
