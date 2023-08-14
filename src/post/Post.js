@@ -69,13 +69,12 @@ const ShareInfo = () => {
 
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center text-xl my-3">해운대구</div>
-
+      <div className="flex justify-center items-center text-lg font-medium my-3">해운대구</div>
+      <div className="border-b-2 border-d9d9d9 w-11/12 m-auto"/>
       {
         post.map((index) => {
           return (
             <div key={index} className="w-11/12 m-auto">
-              <div className="border-b-2 border-d9d9d9"></div>
               <div className="flex justify-between my-3">
                 <div className="">
                   <div className="text-xl">이것은 행사 이름입니다</div>
@@ -95,6 +94,7 @@ const ShareInfo = () => {
                 행사내용입니다.벌써 시인의 밤이 별 사랑과 헤일 가난한 내 때 봅니다. 부끄러운 너무나 계절이 있습니다. 하나에 북간도에 같이 경, 너무나 계십니다. 별들을 헤일 너무나 아침이 당신은 별이 있습니다. 라이너 가을로 차 나는 봅니다. 차 내 보고, 이름과 그리고 봅니다. 하나에 아름다운 그러나 어머니 별을 버리었습니다.
               </div>
               <br />
+              <div className="border-b-2 border-d9d9d9"></div>
             </div>
           )
         })
