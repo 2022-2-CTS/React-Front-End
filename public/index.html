@@ -26,7 +26,7 @@
     -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=403841fc6ce405f4d15772e3fb808956&libraries=services&autoload=false"></script>
     <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=Javascript Key&libraries=services&autoload=false"></script> -->
-    <title>부산시 문화예술 지도</title>
+    <title>갈매기</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -41,5 +41,21 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        // Register a service worker hosted at the root of the
+        // site using the default scope.
+        navigator.serviceWorker
+          .register("/service_worker.js")
+          .then((registration) => {
+            console.log("Service worker registration succeeded:", registration);
+          })
+          .catch((err) => {
+            console.log("Service worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
   </body>
 </html>
