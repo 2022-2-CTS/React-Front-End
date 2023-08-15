@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../img/icon/logo.svg";
+import CompleteButton from "../component/CompleteButton";
 
 const RegisterNickname = () => {
 
@@ -48,11 +49,14 @@ const RegisterNickname = () => {
                     (최소 2자, 최대 8자)
                 </div>
                     
-                <div className="flex justify-center align-center rounded-xl border-0 w-11/12 py-4 bg-[#1F83EB]
+                {/* <div className="flex justify-center align-center rounded-xl border-0 w-11/12 py-4 bg-[#1F83EB]
                 absolute bottom-0 mb-3"
                 onClick={registerNicknameButton}>
                     <p className="font-bold text-xl text-white">완료</p>
-                </div>
+                </div> */}
+                <CompleteButton content="완료"
+                _class="absolute bottom-0 mb-3 w-11/12"
+                onClick={registerNicknameButton} />
             </div>
         </React.Fragment>
     )
