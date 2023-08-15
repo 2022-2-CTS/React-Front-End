@@ -16,6 +16,9 @@ module.exports = {
       },
       dropShadow: {
         'position': '0 0px 5px rgba(0, 0, 0, 0.1)'
+      },
+      colors: {
+        'main': '#1F83EB'
       }
     },
   },
