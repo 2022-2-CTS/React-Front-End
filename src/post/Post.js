@@ -1,4 +1,4 @@
-import React, { Suspense, useLayoutEffect } from "react";
+import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import axios from 'axios';
 
 import { ReactComponent as Write } from "../img/icon/write.svg";
@@ -57,21 +57,19 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 //     </React.Fragment>
 //   )
 // }
-let lists = []
-
-async function getlist() {
-  axios.get("http://localhost:3004/api/post/lists")
-    .then((response) => {
-      lists = response.data
-      console.log("success");
-    })
-    .catch(() => {
-      console.log("fail");
-    })
-}
-
 
 const ShareInfo = () => {
+
+  const [lists,getlists]=useState([]);
+
+  useEffect(() => {
+		const fetchData = async() => {
+          const res = await axios.get('http://localhost:3004/api/post/lists');
+          return res.data;
+        }	
+        fetchData().then(res => getlists(res));
+    }, []);
+
 
   const navigate = useNavigate();
 
@@ -83,16 +81,13 @@ const ShareInfo = () => {
   //지금당장 , 어제갔다왔음, 오늘하더라, 내일도한다
   const tagTextArray = ["지금당장", "어제갔다왔음", "오늘도하더라", "내일도한다"]
 
-  useLayoutEffect(()=>{
-   getlist() 
-  },[])
 
   return (
     <React.Fragment>
       <div className="flex justify-center items-center text-lg font-medium my-3">해운대구</div>
       <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
       {
-        lists && lists.map((item, index) => {
+        lists.map((item, index) => {
           return (
             <div key={index} className="w-10/12 m-auto">
               <div className="flex justify-between my-3">
