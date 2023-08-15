@@ -63,7 +63,6 @@ async function getlist() {
   axios.get("http://localhost:3004/api/post/lists")
     .then((response) => {
       lists = response.data
-      console.log(lists)
       console.log("success");
     })
     .catch(() => {

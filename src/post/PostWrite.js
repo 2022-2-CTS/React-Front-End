@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import SelectLocation from "../component/SelectLocation";
+import CompleteButton from "../component/CompleteButton";
 import { ReactComponent as Position } from "../img/icon/position.svg";
 
 
@@ -108,9 +109,7 @@ const ShareInfoWrite = () => {
             onChange={getContent} />
         </div>
 
-        <button className="flex justify-center rounded-2xl border-2 bg-[#1F83EB] w-full py-4">
-          <p className="font-bold text-xl text-white" onClick={postWrite}>작성 완료</p>
-        </button>
+        <CompleteButton content="작성 완료" onClick={postWrite}/>
 
       </div>
     </React.Fragment>
