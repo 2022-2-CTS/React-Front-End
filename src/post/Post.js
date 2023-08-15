@@ -74,7 +74,7 @@ const ShareInfo = () => {
       {
         post.map((index) => {
           return (
-            <div key={index} className="w-11/12 m-auto">
+            <div key={index} className="w-10/12 m-auto">
               <div className="flex justify-between my-3">
                 <div className="">
                   <div className="text-xl">이것은 행사 이름입니다</div>
@@ -99,7 +99,7 @@ const ShareInfo = () => {
           )
         })
       }
-      <Write className="fixed bottom-[60px] right-0" onClick={write} ></Write>
+      <Write className="fixed bottom-[60px] right-0 -mb-4 -mr-4" onClick={write} ></Write>
       <div className="h-[60px]"></div>
       <Nav />
     </React.Fragment>
