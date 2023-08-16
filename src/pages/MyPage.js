@@ -12,7 +12,7 @@ const MyPage = () => {
 
     return (
         <React.Fragment>
-            <div className="w-11/12 m-auto">
+            <div className="w-11/12 m-auto animated-fade">
                 <div className="flex justify-center items-center text-lg font-medium my-3"> 내정보</div>
                 <div className="border-b-2 border-d9d9d9"></div>
                 <div className="m-5 font-bold">

@@ -67,51 +67,53 @@ const ShareInfoWrite = () => {
 
   return (
     <React.Fragment>
-      {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
-        setLocation={setLocation}
-        setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
-      <div className="flex justify-center items-center text-lg font-medium my-3">정보작성</div>
-      <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
-      <div className="w-5/6 m-auto">
+      <div className="animated-fade">
+        {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
+          setLocation={setLocation}
+          setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
+        <div className="flex justify-center items-center text-lg font-medium my-3">정보작성</div>
+        <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
+        <div className="w-5/6 m-auto">
 
-        <div className="">
-          <div className=" my-3 text-xl">행사제목</div>
-          <input className=" bg-white border border-slate-300 rounded-lg focus:outline-none w-full h-[40px] py-2"
-            value={title} onChange={getTitle} />
-        </div>
-
-        <div className=" my-3 text-xl">위치</div>
-
-        <div className="flex">
-          <div className="bg-white border border-slate-300 rounded-lg w-full py-2 h-[40px]">
-            {location}
+          <div className="">
+            <div className=" my-3 text-xl">행사제목</div>
+            <input className=" bg-white border border-slate-300 rounded-lg focus:outline-none w-full h-[40px] py-2"
+              value={title} onChange={getTitle} />
           </div>
-          <Position className="drop-shadow-position w-12 ml-2 mt-0.5"
-            onClick={() => setSelectLocationToggle(!selectLocationToggle)} />
+
+          <div className=" my-3 text-xl">위치</div>
+
+          <div className="flex">
+            <div className="bg-white border border-slate-300 rounded-lg w-full py-2 h-[40px]">
+              {location}
+            </div>
+            <Position className="drop-shadow-position w-12 ml-2 mt-0.5"
+              onClick={() => setSelectLocationToggle(!selectLocationToggle)} />
+          </div>
+
+          <div class="grid grid-cols-2 gap-5 m-auto mt-8">
+            {
+              tagTextArray.map((tag, idx) => {
+                return (
+                  <button className="flex justify-start items-baseline rounded-full border-2 p-1" onClick={() => setTag(idx)}>
+                    <div className={tagColorArray[idx] + " w-3 h-3 m-2 rounded-full"}></div>
+                    <span>{tag}</span>
+                  </button>
+                )
+              })
+            }
+          </div>
+
+          <div className="my-3">
+            <div className="text-xl">내용</div>
+            <input className=" bg-white border border-slate-300 h-32 w-full rounded-lg focus:outline-none my-6"
+              onChange={getContent} />
+          </div>
+
+          <CompleteButton content="작성 완료" onClick={postWrite} />
+
         </div>
-
-        <div class="grid grid-cols-2 gap-5 m-auto mt-8">
-          {
-            tagTextArray.map((tag, idx) => {
-              return (
-                <button className="flex justify-start items-baseline rounded-full border-2 p-1" onClick={() => setTag(idx)}>
-                  <div className={tagColorArray[idx] + " w-3 h-3 m-2 rounded-full"}></div>
-                  <span>{tag}</span>
-                </button>
-              )
-            })
-          }
         </div>
-
-        <div className="my-3">
-          <div className="text-xl">내용</div>
-          <input className=" bg-white border border-slate-300 h-32 w-full rounded-lg focus:outline-none my-6"
-            onChange={getContent} />
-        </div>
-
-        <CompleteButton content="작성 완료" onClick={postWrite}/>
-
-      </div>
     </React.Fragment>
   );
 };

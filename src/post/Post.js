@@ -60,15 +60,15 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 
 const ShareInfo = () => {
 
-  const [lists,getlists]=useState([]);
+  const [lists, getlists] = useState([]);
 
   useEffect(() => {
-		const fetchData = async() => {
-          const res = await axios.get('http://localhost:3004/api/post/lists');
-          return res.data;
-        }	
-        fetchData().then(res => getlists(res));
-    }, []);
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:3004/api/post/lists');
+      return res.data;
+    }
+    fetchData().then(res => getlists(res));
+  }, []);
 
 
   const navigate = useNavigate();
@@ -84,38 +84,41 @@ const ShareInfo = () => {
 
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center text-lg font-medium my-3">해운대구</div>
-      <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
-      {
-        lists.map((item, index) => {
-          return (
-            <div key={index} className="w-10/12 m-auto">
-              <div className="flex justify-between my-3">
-                <div className="">
-                  <div className="text-xl">{item.title}</div>
-                  <div className="text-sm -mt-1" >{item.date}</div>
+      <div className="animated-fade">
+
+        <div className="flex justify-center items-center text-lg font-medium my-3">해운대구</div>
+        <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
+        {
+          lists.map((item, index) => {
+            return (
+              <div key={index} className="w-10/12 m-auto">
+                <div className="flex justify-between my-3">
+                  <div className="">
+                    <div className="text-xl">{item.title}</div>
+                    <div className="text-sm -mt-1" >{item.date}</div>
+                  </div>
+                  <div className="rounded-full border-2 w-1/3 text-sm flex justify-center items-center h-8 mt-2">
+                    <div className={tagColorArray[item.tag] + ' w-3 h-3 m-1 rounded-full'}></div>
+                    {tagTextArray[item.tag]}
+                  </div>
                 </div>
-                <div className="rounded-full border-2 w-1/3 text-sm flex justify-center items-center h-8 mt-2">
-                  <div className={tagColorArray[item.tag] + ' w-3 h-3 m-1 rounded-full'}></div>
-                  {tagTextArray[item.tag]}
+                <div
+                  className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
+                  {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
+                  {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
                 </div>
+                <div className="text-sm my-3">
+                  {item.content}
+                </div>
+                <br />
+                <div className="border-b-2 border-d9d9d9"></div>
               </div>
-              <div
-                className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
-                {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
-                {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
-              </div>
-              <div className="text-sm my-3">
-                {item.content}
-              </div>
-              <br />
-              <div className="border-b-2 border-d9d9d9"></div>
-            </div>
-          )
-        })
-      }
+            )
+          })
+        }
+        <div className="h-[60px]"></div>
+      </div>
       <Write className="fixed bottom-[60px] right-0 -mb-4 -mr-4" onClick={write} ></Write>
-      <div className="h-[60px]"></div>
       <Nav />
     </React.Fragment>
   );

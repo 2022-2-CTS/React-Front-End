@@ -35,28 +35,26 @@ const RegisterNickname = () => {
 
     return (
         <React.Fragment>
-            <div className="flex flex-col justify-center items-center
-            my-32 px-4">
-                <Logo className="w-20 h-full" />
-                <div className="text-center color-[#4B4B4B] font-light text-lg my-3">
-                    사용할 닉네임을 <br />
-                    입력해주세요.
-                </div>
-                <input className="border border-[#D9D9D9] rounded-2xl
+            <div className="my-32 px-4">
+                <div className="animated-fade flex flex-col justify-center items-center">
+                    <Logo className="w-20 h-full" />
+                    <div className="text-center color-[#4B4B4B] font-light text-lg my-3">
+                        사용할 닉네임을 <br />
+                        입력해주세요.
+                    </div>
+
+                    <input className="border border-[#D9D9D9] rounded-2xl
                 p-3 px-5"
-                    onChange={changeNicknameHandler}></input>
-                <div className="text-center color-[#4B4B4B] font-light text-sm my-3">
-                    (최소 2자, 최대 8자)
+                        onChange={changeNicknameHandler}></input>
+
+                    <div className="text-center color-[#4B4B4B] font-light text-sm my-3">
+                        (최소 2자, 최대 8자)
+                    </div>
                 </div>
-                    
-                {/* <div className="flex justify-center align-center rounded-xl border-0 w-11/12 py-4 bg-[#1F83EB]
-                absolute bottom-0 mb-3"
-                onClick={registerNicknameButton}>
-                    <p className="font-bold text-xl text-white">완료</p>
-                </div> */}
+                
                 <CompleteButton content="완료"
-                _class="absolute bottom-0 mb-3 w-11/12"
-                onClick={registerNicknameButton} />
+                    _class="absolute bottom-0 mb-3 w-11/12"
+                    onClick={registerNicknameButton} />
             </div>
         </React.Fragment>
     )
