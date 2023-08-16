@@ -21,7 +21,7 @@ const RegisterNickname = () => {
 
         console.log(userId)
 
-        axios.post('http://localhost:3004/api/signup/nickname/set', {
+        axios.post('http://localhost:3004/api/signup/nickname/', {
             registerType: registerType,
             userId: userId,
             nickname: nickname
@@ -55,8 +55,8 @@ const RegisterNickname = () => {
                     <p className="font-bold text-xl text-white">완료</p>
                 </div> */}
                 <CompleteButton content="완료"
-                _class="absolute bottom-0 mb-3 w-11/12"
-                onClick={registerNicknameButton} />
+                    _class="absolute bottom-0 mb-3 w-11/12"
+                    _event={registerNicknameButton} />
             </div>
         </React.Fragment>
     )

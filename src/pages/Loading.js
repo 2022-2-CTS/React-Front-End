@@ -24,7 +24,7 @@ const Loading = () => {
         var registerType = localStorage.getItem("registerType");
         var userId = localStorage.getItem("id");
 
-        axios.post("http://localhost:3004/api/signup/nickname/check", {
+        axios.post("http://localhost:3004/api/signup/nickname/status", {
             registerType : registerType,
             userId : userId
         }).then((req) => {

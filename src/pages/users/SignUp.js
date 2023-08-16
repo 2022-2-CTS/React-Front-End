@@ -111,7 +111,7 @@ const Login = () => {
                 console.log("왜 안돼!!")
                 console.log(req.data)
                 if(req.data == "가입완료"){
-                    navigate('/signin')
+                    navigate('/login')
                 }
             }).catch((err) => {
                 console.log(err)
@@ -182,12 +182,12 @@ const Login = () => {
                 <div className="col-span-4 mt-4">
                     {
                         finish
-                        ?
-                        <CompleteButton content="가입 완료"
-                        onClick={complete}/>
-                        :
-                        <CompleteButton content="가입 완료"
-                        _class="brightness-75"/>
+                            ?
+                            <CompleteButton content="가입 완료"
+                                _event={complete} />
+                            :
+                            <CompleteButton content="가입 완료"
+                                _class="brightness-75" />
                     }
                 </div>
             </div>
