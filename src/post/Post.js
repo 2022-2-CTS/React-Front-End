@@ -58,7 +58,7 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 //   )
 // }
 
-const ShareInfo = () => {
+const Post = () => {
 
   const [lists, getlists] = useState([]);
 
@@ -124,4 +124,4 @@ const ShareInfo = () => {
   );
 };
 
-export default ShareInfo;
+export default Post;

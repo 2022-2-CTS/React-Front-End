@@ -6,7 +6,7 @@ import CompleteButton from "../component/CompleteButton";
 import { ReactComponent as Position } from "../img/icon/position.svg";
 
 
-const ShareInfoWrite = () => {
+const Write = () => {
   // 선택된 위치 주소 문자열
   let [location, setLocation] = useState("");
   // 위치 선택 컴포넌트 toggle
@@ -118,4 +118,4 @@ const ShareInfoWrite = () => {
   );
 };
 
-export default ShareInfoWrite;
+export default Write;
