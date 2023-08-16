@@ -51,10 +51,10 @@ const RegisterNickname = () => {
                         (최소 2자, 최대 8자)
                     </div>
                 </div>
-                
+
                 <CompleteButton content="완료"
                     _class="absolute bottom-0 mb-3 w-11/12"
-                    onClick={registerNicknameButton} />
+                    _event={registerNicknameButton} />
             </div>
         </React.Fragment>
     )

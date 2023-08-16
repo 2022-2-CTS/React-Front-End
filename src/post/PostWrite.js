@@ -110,7 +110,7 @@ const ShareInfoWrite = () => {
               onChange={getContent} />
           </div>
 
-          <CompleteButton content="작성 완료" onClick={postWrite} />
+          <CompleteButton content="작성 완료" _event={postWrite} />
 
         </div>
         </div>

@@ -181,7 +181,7 @@ const Login = () => {
                         finish
                             ?
                             <CompleteButton content="가입 완료"
-                                onClick={complete} />
+                                _event={complete} />
                             :
                             <CompleteButton content="가입 완료"
                                 _class="brightness-75" />
