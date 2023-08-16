@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import crypto from 'crypto-js'
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
-import { ReactComponent as Visibility } from "../img/icon/visibility.svg";
-import { ReactComponent as Visibility_off } from "../img/icon/visibility_off.svg";
-import { ReactComponent as Logo } from "../img/icon/logo.svg";
+import { ReactComponent as Visibility } from "../../img/icon/visibility.svg";
+import { ReactComponent as Visibility_off } from "../../img/icon/visibility_off.svg";
+import { ReactComponent as Logo } from "../../img/icon/logo.svg";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -28,7 +28,7 @@ const SignIn = () => {
   useEffect(() => {
     //console.log(validToken)
     if (validToken != null) {
-      axios.post('http://localhost:3004/api/login/appLogin/alreadyLogined', {
+      axios.post('http://localhost:3004/api/login/status', {
         validToken
       }).then((res) => {
         console.log(res.data)
@@ -41,7 +41,7 @@ const SignIn = () => {
       })
     }
     if (kakaoAccessToken != null) {
-      axios.post('http://localhost:3004/api/login/kakaoLogin/alreadyLoginedKakao', {
+      axios.post('http://localhost:3004/api/login/kakao/status', {
         kakaoAccessToken
       }).then((res) => {
         console.log(res.data)
@@ -54,7 +54,7 @@ const SignIn = () => {
       })
     }
     if (naverAccessToken != null) {
-      axios.post("http://localhost:3004/api/login/naverLogin/alreadyLoginedNaver", {
+      axios.post("http://localhost:3004/api/login/naver/status", {
         naverAccessToken
       }).then((res) => {
         console.log(res.data)
@@ -95,7 +95,7 @@ const SignIn = () => {
     console.log(pw)
     const ciphertext = crypto.AES.encrypt(pw, 'culture').toString();
     console.log(ciphertext)
-    axios.post("http://localhost:3004/api/login/appLogin/login", {
+    axios.post("http://localhost:3004/api/login/", {
       sendId: id,
       sendPw: ciphertext,
     }).then((req) => {
@@ -112,7 +112,7 @@ const SignIn = () => {
   }
 
   const Rest_api_key = 'e6c2fe139670b147caaf750b558a4750'
-  const redirect_uri = 'http://localhost:3000/kakao-login'
+  const redirect_uri = 'http://localhost:3000/login/kakao'
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
   function loginForKakao() {
     window.location.href = kakaoURL
@@ -120,7 +120,7 @@ const SignIn = () => {
 
 
   const naver_client_id = 'o9JmjRrP1GmmANohGaH1'
-  const callback_uri = 'http://localhost:3000/naver-login'
+  const callback_uri = 'http://localhost:3000/login/naver'
   const naverURL = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + naver_client_id + '&redirect_uri=' + encodeURI(callback_uri) + '&state=' + Math.random().toString(36).substr(3, 14);
 
   function loginForNaver() {

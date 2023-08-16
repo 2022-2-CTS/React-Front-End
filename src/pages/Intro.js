@@ -8,7 +8,7 @@ const Intro = () => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            navigate('/signin');
+            navigate('/login');
         }, 3500);
 
         // return () => {

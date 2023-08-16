@@ -15,7 +15,7 @@ const Loading = () => {
 
     function nickname(){
         const timeout = setTimeout(() => {
-            navigate('/register-nickname');
+            navigate('/signup/nickname');
         }, 4900);
     }
 
@@ -24,7 +24,7 @@ const Loading = () => {
         var registerType = localStorage.getItem("registerType");
         var userId = localStorage.getItem("id");
 
-        axios.post("http://localhost:3004/api/mydata/nickname/checkNickname", {
+        axios.post("http://localhost:3004/api/signup/nickname/check", {
             registerType : registerType,
             userId : userId
         }).then((req) => {

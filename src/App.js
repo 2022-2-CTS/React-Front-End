@@ -2,22 +2,21 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 
-// import Home from "./pages/Home";
+
 import Intro from "./pages/Intro";
 import Loading from "./pages/Loading";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import Login from "./pages/users/Login";
+import SignUp from "./pages/users/SignUp";
 import Map from "./pages/Map";
 import MyPage from "./pages/MyPage";
 import Detail from "./pages/Detail";
-import RegisterNickname from "./pages/RegisterNickname";
+import Nickname from "./pages/users/Nickname";
 
 import Post from "./post/Post";
 import PostWrite from "./post/PostWrite";
 
-import KakaoLogin from "./socials/KakaoLogin";
-import NaverLogin from "./socials/NaverLogin";
-import GoogleLogin from "./socials/Google"
+import KakaoLogin from "./pages/users/socials/LoginForKakao";
+import NaverLogin from "./pages/users/socials/LoginForNaver";
 
 const App = () => {
   return (
@@ -25,13 +24,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Intro />} />
         <Route path="/loading" element={<Loading />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/register-nickname" element={<RegisterNickname />} />
+        <Route path="/signup/nickname" element={<Nickname />} />
         
-        <Route path="/kakao-login" element={<KakaoLogin />} />
-        <Route path="/naver-login" element={<NaverLogin />} />
-        <Route path="/google-login" element={<GoogleLogin />} />
+        <Route path="/login/kakao" element={<KakaoLogin />} />
+        <Route path="/login/naver" element={<NaverLogin />} />
 
         <Route path="/post" element={<Post />} />
         <Route path="/post/write" element={<PostWrite/>} />
