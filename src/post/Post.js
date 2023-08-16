@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import axios from 'axios';
 
 import { ReactComponent as Write } from "../img/icon/write.svg";
-import LocationMarker from "../img/icon/location_select.svg";
+import { ReactComponent as Position } from "../img/icon/position.svg";
 
 import Nav from "../component/BottomNav";
 import Loading from "../pages/Loading"
@@ -78,40 +78,47 @@ const Post = () => {
   }
 
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
-  //지금당장 , 어제갔다왔음, 오늘하더라, 내일도한다
   const tagTextArray = ["지금당장", "어제갔다왔음", "오늘도하더라", "내일도한다"]
 
 
   return (
     <React.Fragment>
       <div className="animated-fade">
-
-        <div className="flex justify-center items-center text-lg font-medium my-3">해운대구</div>
-        <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
+        <div className="sticky top-0 bg-white">
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-medium m-4">
+              해운대구
+            </span>
+            <Position className="drop-shadow-position w-12 m-4" />
+          </div>
+          <hr className="mx-2" />
+        </div>
         {
           lists.map((item, index) => {
             return (
-              <div key={index} className="w-10/12 m-auto">
-                <div className="flex justify-between my-3">
-                  <div className="">
-                    <div className="text-xl">{item.title}</div>
-                    <div className="text-sm -mt-1" >{item.date}</div>
+              <div>
+                <div key={index} className="flex flex-col w-11/12 m-auto">
+                  <div className="flex justify-between my-2">
+                    <div>
+                      <div className="text-l font-bold">{item.title}</div>
+                      <div className="text-xs -mt-1" >{item.date}</div>
+                    </div>
+                    <div className="rounded-full border w-auto text-xs font-light flex justify-start items-center h-6 mt-2 pl-1 pr-3">
+                      <div className={tagColorArray[item.tag] + ' w-2.5 h-2.5 m-1 rounded-full'}></div>
+                      {tagTextArray[item.tag]}
+                    </div>
                   </div>
-                  <div className="rounded-full border-2 w-1/3 text-sm flex justify-center items-center h-8 mt-2">
-                    <div className={tagColorArray[item.tag] + ' w-3 h-3 m-1 rounded-full'}></div>
-                    {tagTextArray[item.tag]}
+                  <div
+                    className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
+                    {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
+                    {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
                   </div>
+                  <div className="text-sm">
+                    {item.content}
+                  </div>
+                  <br />
                 </div>
-                <div
-                  className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
-                  {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
-                  {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
-                </div>
-                <div className="text-sm my-3">
-                  {item.content}
-                </div>
-                <br />
-                <div className="border-b-2 border-d9d9d9"></div>
+                <div className="w-full border-b-2 border-d9d9d9"></div>
               </div>
             )
           })
