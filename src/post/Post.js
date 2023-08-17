@@ -83,7 +83,8 @@ const Post = () => {
 
   return (
     <React.Fragment>
-      <div className="animated-fade relative h-screen bg-white">
+      <div className="animated-fade relative h-full bg-white
+      flex flex-col">
         <div className="sticky top-0 bg-white">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
@@ -123,7 +124,8 @@ const Post = () => {
             )
           })
         }
-        <Write className="absolute bottom-0 right-0 mb-14 -mr-0"
+        <Write className="fixed bottom-0 max-sm:right-0
+        mb-14 -mr-0 sm:self-end"
           onClick={write} ></Write>
 
         <div className="h-[60px]"></div>

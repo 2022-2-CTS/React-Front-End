@@ -53,10 +53,10 @@ const Loading = () => {
                     <div className="flex flex-col w-2/3 animated-fade">
                         <Logo className="m-auto w-1/4 h-full -mb-1 load_seagull" />
                         {/* loading bar */}
-                        <div className="relative w-full max-md:h-5 md:h-10 
+                        <div className="relative w-full h-5
                         border-0 rounded-full bg-white overflow-hidden" aria-hidden="true">
                             {/* loading gauge */}
-                            <div className="absolute top-0 left-0 w-1/8 max-md:h-5 md:h-10 
+                            <div className="absolute top-0 left-0 w-1/4 h-5
                             border-x-2 border-slate-500 rounded-full bg-[#1F83EB]
                             animated-load-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
@@ -69,8 +69,8 @@ const Loading = () => {
                                 </svg>
                             </div>
                         </div>
-                        <div className="text-center max-md:my-2 md:my-8 mb-6 
-                        text-white max-md:text-sm md:text-2xl 
+                        <div className="text-center max-md:my-2 md:my-5 mb-6 
+                        text-white max-md:text-sm md:text-md 
                         max-md:font-light md:font-light">
                             잠시만 기다려주세요 · · ·
                         </div>

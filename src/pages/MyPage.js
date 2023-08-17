@@ -7,13 +7,18 @@ const MyPage = () => {
 
     var nickName = " 매운알파카 ";
 
-    //const keep = ["바보의 세계", "검은고양이", "청부살인 협동조합"]
-    const keep = []
+    // const keep = ["바보의 세계", "검은고양이", "청부살인 협동조합"]
+    // const keep = []
+    const keep = ['test', 'test', 'test', 'test', 'test', 'test', 'test', 'test',]
+
+    console.log("w-full m-auto animated-fade bg-white " + (keep.length > 0) ? "h-full" : "h-screen")
+
+    let keepLength = (keep.length > 0) ? "h-full" : "h-screen";
 
     return (
         <React.Fragment>
-            <div className="w-full m-auto animated-fade bg-white
-            h-screen">
+            <div className={"w-full m-auto animated-fade bg-white " + keepLength}>
+            {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
                 <div className="flex justify-center items-center 
                 text-lg font-medium py-3">
                     내정보
@@ -24,7 +29,7 @@ const MyPage = () => {
                     <div className="text-3xl my-2 ">{nickName}님!</div>
                 </div>
                 <div className="border-b-2 border-d9d9d9 mt-8"></div>
-                <div className="text-xl m-3 text-center">찜목록</div>
+                <div className="text-lg font-medium m-3 text-center">찜목록</div>
                 {
                     keep.length == 0
                         ?
@@ -50,6 +55,7 @@ const MyPage = () => {
                         })
                 }
             </div>
+            <div className="mb-[60px] bg-white"></div>
             <Nav />
         </React.Fragment>
     );
