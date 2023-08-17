@@ -16,7 +16,7 @@ const Detail = () => {
 
     return (
         <React.Fragment>
-            <div className="animated-fade h-screen bg-white">
+            <div className="animated-fade h-full bg-white drop-shadow-bg">
                 {/* Header (pre, head, heart) */}
                 <div className="flex justify-between items-center p-5">
                     <Previous onClick={() => navigate('/map')}

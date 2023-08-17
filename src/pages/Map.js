@@ -221,7 +221,7 @@ const Map = () => {
         rounded-full px-2 py-1
         active:brightness-75">
                 {/* category color circle */}
-                <div className={categoryColorArray[colorIndex] + ' max-md:w-2 md:w-3 max-md:h-2 md:h-3 m-1.5 rounded-full'}></div>
+                <div className={categoryColorArray[colorIndex] + ' w-2 h-2 m-1 rounded-full'}></div>
                 {/* category name */}
                 <div className="pb-[1.5px]">
                     {categoryName}
@@ -242,7 +242,7 @@ const Map = () => {
             </div>
 
             {/* map */}
-            <div id="map" className="max-w-[1280px] animated-fade w-screen h-screen"></div>
+            <div id="map" className="max-w-[640px] animated-fade w-screen h-screen drop-shadow-bg"></div>
 
             {/* bottom nav bar */}
             <Nav />
