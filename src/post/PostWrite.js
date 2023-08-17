@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import SelectLocation from "../component/SelectLocation";
 import CompleteButton from "../component/CompleteButton";
 import { ReactComponent as Position } from "../img/icon/position.svg";
+import { ReactComponent as Previous } from "../img/icon/back.svg";
 
 
 const Write = () => {
@@ -11,6 +13,8 @@ const Write = () => {
   let [location, setLocation] = useState("");
   // 위치 선택 컴포넌트 toggle
   let [selectLocationToggle, setSelectLocationToggle] = useState(false);
+
+  const navigate = useNavigate();
 
   const [userId, setId] = useState();
 
@@ -63,7 +67,7 @@ const Write = () => {
 
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
   //지금당장 , 어제갔다왔음, 오늘하더라, 내일도한다
-  const tagTextArray = ["지금당장", "어제갔다왔음", "오늘도하더라", "내일도한다"]
+  const tagTextArray = ["지금당장", "어제 갔다왔음", "오늘 하더라", "내일도 한대"]
 
   return (
     <React.Fragment>
@@ -71,49 +75,59 @@ const Write = () => {
         {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
           setLocation={setLocation}
           setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
-        <div className="flex justify-center items-center text-lg font-medium py-3">정보작성</div>
-        <div className="border-b-2 border-d9d9d9 w-11/12 m-auto" />
-        <div className="w-5/6 m-auto">
+        <div className="sticky top-0 bg-white">
+          <div className="flex justify-center items-center p-5">
+            <Previous className="absolute left-0 ml-5" onClick={() => navigate(-1)} />
+            <span className="text-lg font-medium">
+              정보 작성
+            </span>
+          </div>
+          <hr className="mx-2" />
+        </div>
 
-          <div className="">
-            <div className=" my-3 text-xl">행사제목</div>
-            <input className=" bg-white border border-slate-300 rounded-lg focus:outline-none w-full h-[40px] py-2"
+
+        <div className="w-11/12 m-auto">
+
+          <div className="my-6">
+            <div className="text-l mb-2 font-light">행사제목</div>
+            <input className=" bg-white border border-slate-300 rounded-2xl focus:outline-none w-full h-[46px] py-2"
               value={title} onChange={getTitle} />
           </div>
 
-          <div className=" my-3 text-xl">위치</div>
-
-          <div className="flex">
-            <div className="bg-white border border-slate-300 rounded-lg w-full py-2 h-[40px]">
-              {location}
+          <div className="my-6">
+            <div className="text-l mb-2 font-light">위치</div>
+            <div className="flex">
+              <div className="bg-white border border-slate-300 rounded-2xl w-full py-2 h-[46px]">
+                {location}
+              </div>
+              <Position className="drop-shadow-position w-12 ml-2 mt-0.5"
+                onClick={() => setSelectLocationToggle(!selectLocationToggle)} />
             </div>
-            <Position className="drop-shadow-position w-12 ml-2 mt-0.5"
-              onClick={() => setSelectLocationToggle(!selectLocationToggle)} />
           </div>
 
-          <div class="grid grid-cols-2 gap-5 m-auto mt-8">
+          <div className="flex flex-wrap -mt-4">
             {
               tagTextArray.map((tag, idx) => {
-                return (
-                  <button className="flex justify-start items-baseline rounded-full border-2 p-1" onClick={() => setTag(idx)}>
-                    <div className={tagColorArray[idx] + " w-3 h-3 m-2 rounded-full"}></div>
-                    <span>{tag}</span>
-                  </button>
-                )
+                  return (
+                    <button className="flex justify-start rounded-full font-light border w-auto m-2 p-0.5" onClick={() => setTag(idx)}>
+                      <div className={tagColorArray[idx] + " w-2.5 h-2.5 my-auto mr-1 ml-2 rounded-full"}></div>
+                      <span className="text-sm mr-2">{tag}</span>
+                    </button>
+                  )
               })
             }
           </div>
 
           <div className="my-3">
-            <div className="text-xl">내용</div>
-            <input className=" bg-white border border-slate-300 h-32 w-full rounded-lg focus:outline-none my-6"
+            <div className="text-l mb-2 font-light">내용</div>
+            <input className=" bg-white border border-slate-300 h-32 w-full rounded-2xl focus:outline-none"
               onChange={getContent} />
           </div>
 
           <CompleteButton content="작성 완료" _event={postWrite} />
 
         </div>
-        </div>
+      </div>
     </React.Fragment>
   );
 };
