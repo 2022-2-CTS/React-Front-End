@@ -71,7 +71,7 @@ const Write = () => {
 
   return (
     <React.Fragment>
-      <div className="animated-fade bg-white h-screen">
+      <div className="animated-fade bg-white h-screen drop-shadow-bg">
         {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
           setLocation={setLocation}
           setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
