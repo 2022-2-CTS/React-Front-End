@@ -7,9 +7,9 @@ const Intro = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // const timeout = setTimeout(() => {
-        //     navigate('/login');
-        // }, 3500);
+        const timeout = setTimeout(() => {
+            navigate('/login');
+        }, 3500);
 
         // return () => {
         //     clearTimeout(timeout)
