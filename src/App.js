@@ -20,7 +20,8 @@ import NaverLogin from "./pages/users/socials/LoginForNaver";
 
 const App = () => {
   return (
-    <div className="">
+    <React.Fragment>
+
       <div className="max-w-[1280px] w-full m-auto">
         <BrowserRouter>
           <Routes>
@@ -29,20 +30,22 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signup/nickname" element={<Nickname />} />
-            
+
             <Route path="/login/kakao" element={<KakaoLogin />} />
             <Route path="/login/naver" element={<NaverLogin />} />
 
             <Route path="/post" element={<Post />} />
-            <Route path="/post/write" element={<PostWrite/>} />
-            
+            <Route path="/post/write" element={<PostWrite />} />
+
             <Route path="/map" element={<Map />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/detail" element={<Detail />} />
           </Routes>
         </BrowserRouter>
       </div>
-    </div>
+      {/* <div className="absolute bg-gray-200 w-screen h-screen">
+      </div> */}
+    </React.Fragment>
   );
 };
 

@@ -120,7 +120,7 @@ const Login = () => {
     }
 
     return (
-        <div className="mx-6 my-24">
+        <div className="px-6 py-24 bg-white h-screen">
             <div className="grid grid-cols-4 gap-3 ">
                 <div className="font-bold text-2xl col-start-1 col-span-3">회원가입</div>
                 <div className="col-span-3">

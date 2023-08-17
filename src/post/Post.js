@@ -83,7 +83,7 @@ const Post = () => {
 
   return (
     <React.Fragment>
-      <div className="animated-fade relative h-screen">
+      <div className="animated-fade relative h-screen bg-white">
         <div className="sticky top-0 bg-white">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
