@@ -62,13 +62,13 @@ const Post = () => {
 
   const [lists, getlists] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await axios.get('http://localhost:3004/api/post/lists');
-  //     return res.data;
-  //   }
-  //   fetchData().then(res => getlists(res));
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:3004/api/post/lists');
+      return res.data;
+    }
+    fetchData().then(res => getlists(res));
+  }, []);
 
 
   const navigate = useNavigate();
@@ -113,7 +113,7 @@ const Post = () => {
                     {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
                     {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
                   </div>
-                  <div className="text-sm">
+                  <div className="text-sm mt-2">
                     {item.content}
                   </div>
                   <br />
