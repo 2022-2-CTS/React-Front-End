@@ -46,17 +46,20 @@ const Loading = () => {
 
     return (
         <React.Fragment>
-            <div className="relative h-screen flex items-center justify-center">
+            <div className="relative h-screen flex items-center justify-center drop-shadow-bg">
                 {/* wave (배경) */}
                 <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
                     {/* logo (갈매기) */}
                     <div className="flex flex-col w-2/3 animated-fade">
-                        <Logo className="m-auto w-1/4 h-full -mb-1 load_seagull" />
+                        <Logo className="m-auto h-full -mb-1 load_seagull
+                        w-1/4 sm:w-1/6" />
+
                         {/* loading bar */}
-                        <div className="relative w-full h-5
+                        <div className="relative w-full
+                        sm:w-9/12 m-auto h-5
                         border-0 rounded-full bg-white overflow-hidden" aria-hidden="true">
                             {/* loading gauge */}
-                            <div className="absolute top-0 left-0 w-1/4 h-5
+                            <div className="absolute top-0 left-0 w-1/4 sm:w-1/6 h-5
                             border-x-2 border-slate-500 rounded-full bg-[#1F83EB]
                             animated-load-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
@@ -70,8 +73,8 @@ const Loading = () => {
                             </div>
                         </div>
                         <div className="text-center max-md:my-2 md:my-5 mb-6 
-                        text-white max-md:text-sm md:text-md 
-                        max-md:font-light md:font-light">
+                        text-white max-md:text-sm
+                        font-light">
                             잠시만 기다려주세요 · · ·
                         </div>
                     </div>

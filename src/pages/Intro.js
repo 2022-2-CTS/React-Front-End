@@ -7,9 +7,9 @@ const Intro = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            navigate('/login');
-        }, 3500);
+        // const timeout = setTimeout(() => {
+        //     navigate('/login');
+        // }, 3500);
 
         // return () => {
         //     clearTimeout(timeout)
@@ -18,12 +18,13 @@ const Intro = () => {
 
     return (
         <React.Fragment>
-            <div className="relative h-screen flex items-center justify-center">
+            <div className="relative h-screen flex items-center justify-center drop-shadow-bg">
                 {/* wave (배경) */}
                 <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
                     {/* logo (갈매기) */}
                     <div className="w-1/2 animated-fade">
-                        <Logo className="m-auto w-2/4 h-full mb-2" />
+                        <Logo className="m-auto w-2/4
+                        sm:w-1/3 h-full mb-2" />
                         <div className="logo-font text-center text-2xl
                         tracking-[.5em] -mr-3
                         color-[#3F4A67]">

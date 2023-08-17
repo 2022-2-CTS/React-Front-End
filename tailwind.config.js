@@ -15,7 +15,8 @@ module.exports = {
         'nav': '0px -10px 30px 3px rgba(0, 0, 0, 0.15)'
       },
       dropShadow: {
-        'position': '0 0px 5px rgba(0, 0, 0, 0.1)'
+        'position': '0 0px 5px rgba(0, 0, 0, 0.1)',
+        'bg': '0 0px 25px rgba(0, 0, 0, 0.15)'
       },
       colors: {
         'main': '#1F83EB'
