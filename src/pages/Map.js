@@ -242,7 +242,7 @@ const Map = () => {
             </div>
 
             {/* map */}
-            <div id="map" className="animated-fade w-screen h-screen"></div>
+            <div id="map" className="max-w-[1280px] animated-fade w-screen h-screen"></div>
 
             {/* bottom nav bar */}
             <Nav />

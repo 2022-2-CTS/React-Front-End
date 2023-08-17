@@ -62,13 +62,13 @@ const Post = () => {
 
   const [lists, getlists] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get('http://localhost:3004/api/post/lists');
-      return res.data;
-    }
-    fetchData().then(res => getlists(res));
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await axios.get('http://localhost:3004/api/post/lists');
+  //     return res.data;
+  //   }
+  //   fetchData().then(res => getlists(res));
+  // }, []);
 
 
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const Post = () => {
 
   return (
     <React.Fragment>
-      <div className="animated-fade">
+      <div className="animated-fade relative h-screen">
         <div className="sticky top-0 bg-white">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
@@ -123,9 +123,11 @@ const Post = () => {
             )
           })
         }
+        <Write className="absolute bottom-0 right-0 mb-14 -mr-0"
+          onClick={write} ></Write>
+
         <div className="h-[60px]"></div>
       </div>
-      <Write className="fixed bottom-[60px] right-0 -mb-4 -mr-4" onClick={write} ></Write>
       <Nav />
     </React.Fragment>
   );
