@@ -49,21 +49,24 @@ const Nav = () => {
             flex items-center justify-between
             max-w-[640px] sm:w-[400px] shadow-nav sm:shadow-nav-sm">
 
-                    <div className="ml-8 sm:ml-12"
+                    <div className="ml-8 sm:ml-12
+                    hover:cursor-pointer hover:scale-110 transition"
                         onClick={ () => ChangeButtonColor(0) }>
                         { !buttonColor[0] ? 
                         <Board /> : 
                         <BoardActive className="animated-scale"/> }
                     </div>
 
-                    <div className="m-8"
+                    <div className="m-8
+                    hover:cursor-pointer hover:scale-110 transition"
                         onClick={ () => ChangeButtonColor(1) }>
                         { !buttonColor[1] ? 
                         <Home /> : 
                         <HomeActive className="animated-scale"/> }
                     </div>
 
-                    <div className="mr-8 sm:mr-12"
+                    <div className="mr-8 sm:mr-12
+                    hover:cursor-pointer hover:scale-110 transition"
                         onClick={ () => ChangeButtonColor(2) }>
                         { !buttonColor[2] ? 
                         <MyPage /> : 

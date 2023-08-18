@@ -19,14 +19,18 @@ const Detail = () => {
             <div className="animated-fade h-full bg-white drop-shadow-bg">
                 {/* Header (pre, head, heart) */}
                 <div className="flex justify-between items-center p-5">
-                    <Previous onClick={() => navigate('/map')}
+                    <Previous className="hover:cursor-pointer hover:scale-110 transition"
+                    onClick={() => navigate('/map')}
                     />
                     <span className="text-lg font-medium">
                         상세 정보
                     </span>
-                    {heart ?
-                        <HeartActive className="animated-heart" onClick={() => setHeart(!heart)} />
-                        : <Heart onClick={() => setHeart(!heart)} />}
+                    {
+                        heart ?
+                        <HeartActive className="animated-heart hover:cursor-pointer hover:scale-105 transition" onClick={() => setHeart(!heart)} /> :
+                        <Heart className="hover:cursor-pointer hover:scale-110 transition"
+                        onClick={() => setHeart(!heart)} />
+                    }
                 </div>
 
                 <hr className="m-2 mb-6" />
@@ -40,7 +44,7 @@ const Detail = () => {
                         src={eventInfo.src} />
 
                     {/* event title */}
-                    <div className="text-2xl my-2 font-bold">
+                    <div className="text-2xl my-5 font-bold">
                         <span>
                             {eventInfo.title}
                         </span>

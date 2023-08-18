@@ -10,6 +10,8 @@ import MarkerPlay from "../img/icon/marker_play_blue.svg";
 import MarkerExhibition from "../img/icon/marker_exhibition_green.svg";
 import MarkerConcert from "../img/icon/marker_concert_yellow.svg";
 
+import { ReactComponent as Position } from "../img/icon/position.svg";
+
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
 const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
@@ -72,6 +74,17 @@ function setEventMarker(navigate, map, geocoder, data, markerImage) {
 
                 markerArray.push(marker);
             }
+        });
+    }
+}
+
+function panToMyPosition(map) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude, // 위도
+                lng = position.coords.longitude; // 경도
+
+            map.panTo(new kakao.maps.LatLng(lat, lng));
         });
     }
 }
@@ -215,13 +228,15 @@ const Map = () => {
             }}
                 key={categoryName}
                 className="flex items-center justify-center
-        whitespace-no-wrap text-center overflow-auto mt-2 h-full
-        border-2
-        no-underline inline-block bg-white mr-2 w-auto text-gray-700 font-normal
-        rounded-full px-2 py-1
-        active:brightness-75">
+                whitespace-no-wrap text-center overflow-auto mt-2 h-full
+                border-2
+                no-underline inline-block bg-white mr-2 w-auto text-gray-700 font-normal
+                rounded-full px-2 py-1
+                active:brightness-75
+                hover:cursor-pointer hover:scale-105 transition">
                 {/* category color circle */}
                 <div className={categoryColorArray[colorIndex] + ' w-2 h-2 m-1 rounded-full'}></div>
+                
                 {/* category name */}
                 <div className="pb-[1.5px]">
                     {categoryName}
@@ -230,19 +245,36 @@ const Map = () => {
         )
     }
 
+    const callPanToMyPosition = () => { panToMyPosition(map) }
+
     return (
         <React.Fragment>
             {/* category */}
             <div className="flex justify-center items-center">
                 <div className="fixed z-40 top-0">
                     <ul className="flex justify-center items-center">
-                        {categoryArray.map((item, index) => { return category(item, index) })}
+                        {
+                            categoryArray.map((item, index) => { 
+                                return category(item, index) 
+                            })
+                        }
                     </ul>
                 </div>
+            
             </div>
 
             {/* map */}
             <div id="map" className="max-w-[640px] animated-fade w-screen h-screen drop-shadow-bg"></div>
+
+            {/* my position */}
+            <div className="flex justify-end items-center">
+                <Position onClick={ () => callPanToMyPosition() }
+                className="fixed z-40 bottom-0 m-5 
+                w-[50px] h-[50px]
+                mb-20 sm:mb-32
+                drop-shadow-position
+                hover:cursor-pointer hover:scale-110 transition"/>
+            </div>
 
             {/* bottom nav bar */}
             <Nav />
