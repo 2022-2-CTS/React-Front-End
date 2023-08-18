@@ -273,7 +273,9 @@ const Map = () => {
                 w-[50px] h-[50px]
                 mb-20 sm:mb-32
                 drop-shadow-position
-                hover:cursor-pointer hover:scale-110 transition"/>
+                hover:cursor-pointer hover:scale-110 transition
+                active:brightness-75
+                active:scale-110"/>
             </div>
 
             {/* bottom nav bar */}
