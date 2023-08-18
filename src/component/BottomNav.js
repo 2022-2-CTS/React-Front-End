@@ -44,11 +44,12 @@ const Nav = () => {
     return (
         <React.Fragment>
             <div className="bg-white h-[60px] w-screen
-            z-50 fixed bottom-0
+            z-50 fixed bottom-0 
+            sm:left-1/2 sm:-translate-x-1/2 sm:rounded-full sm:mb-7 sm:h-[70px]
             flex items-center justify-between
-            max-w-[640px] shadow-nav">
+            max-w-[640px] sm:w-[400px] shadow-nav sm:shadow-nav-sm">
 
-                    <div className="ml-8"
+                    <div className="ml-8 sm:ml-12"
                         onClick={ () => ChangeButtonColor(0) }>
                         { !buttonColor[0] ? 
                         <Board /> : 
@@ -62,7 +63,7 @@ const Nav = () => {
                         <HomeActive className="animated-scale"/> }
                     </div>
 
-                    <div className="mr-8"
+                    <div className="mr-8 sm:mr-12"
                         onClick={ () => ChangeButtonColor(2) }>
                         { !buttonColor[2] ? 
                         <MyPage /> : 

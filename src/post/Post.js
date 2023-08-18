@@ -125,7 +125,7 @@ const Post = () => {
           })
         }
 
-        <div className="h-[60px]"></div>
+        <div className="h-[60px] sm:h-[120px]"></div>
       </div>
       
       <Write className="fixed bottom-0 right-0

@@ -18,7 +18,7 @@ const MyPage = () => {
     return (
         <React.Fragment>
             <div className={"w-full m-auto animated-fade bg-white drop-shadow-bg " + keepLength}>
-            {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
+                {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
                 <div className="flex justify-center items-center 
                 text-lg font-medium py-3">
                     내정보
@@ -35,18 +35,17 @@ const MyPage = () => {
                         ?
                         <div>
                             <div className="justify-center items-center rounded-xl w-11/12 bg-slate-100 m-auto text-l font-bold py-10">
-                                <Heart className="m-auto mb-5"/>
+                                <Heart className="m-auto mb-5" />
                                 <div className="flex justify-center m-auto">찜한 행사가 없어요.</div>
                                 <div className="flex justify-center m-auto">가고 싶은 행사를 찜목록에 추가해 보세요.</div>
                             </div>
                         </div>
                         :
                         keep.map((item, index) => {
-
                             return (
                                 <div key={index}>
-                                    <div className="flex justify-between rounded-xl w-11/12 bg-slate-100 items-baseline m-auto my-5">
-                                        <div class="text-xl font-bold p-2 px-6 my-4">{item}</div>
+                                    <div className="flex justify-between rounded-xl w-11/12 bg-slate-100 items-center m-auto mt-5">
+                                        <div className="text-xl font-bold p-2 px-6 my-4">{item}</div>
                                         <Heart className="mr-5" />
                                     </div>
                                 </div>
@@ -54,8 +53,8 @@ const MyPage = () => {
 
                         })
                 }
+                <div className="h-[85px] sm:h-[120px] bg-white"></div>
             </div>
-            <div className="mb-[60px] bg-white"></div>
             <Nav />
         </React.Fragment>
     );
