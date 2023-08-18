@@ -61,13 +61,20 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
 const Post = () => {
 
   const [lists, getlists] = useState([]);
+  const [len,getlistlen]=useState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:3004/api/post/lists');
-      return res.data;
+      await axios.get('http://localhost:3004/api/post/lists')
+      .then((res)=>{
+        getlists(res.data)
+        getlistlen(res.data.length-1)
+      }).catch(()=>{
+        console.log("fail")
+      })
     }
-    fetchData().then(res => getlists(res));
+    console.log(len)
+    fetchData()
   }, []);
 
 
@@ -119,7 +126,7 @@ const Post = () => {
                   </div>
                   <br />
                 </div>
-                <div className="w-full border-b-2 border-d9d9d9"></div>
+                <div className={ len==index? null :'w-full border-b-2 border-d9d9d9' }></div>
               </div>
             )
           })

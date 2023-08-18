@@ -45,6 +45,7 @@ const Write = () => {
   async function postWrite() {
 
     await getDate()
+    navigate("../post")
 
     const Writedata = {
       userId: "tmp",
@@ -90,7 +91,7 @@ const Write = () => {
 
           <div className="my-6">
             <div className="text-l mb-2 font-light">행사제목</div>
-            <input className=" bg-white border border-slate-300 rounded-2xl focus:outline-none w-full h-[46px] py-2"
+            <input className=" bg-white border border-slate-300 rounded-2xl focus:outline-none w-full h-[46px] p-2"
               value={title} onChange={getTitle} />
           </div>
 
@@ -109,7 +110,7 @@ const Write = () => {
             {
               tagTextArray.map((tag, idx) => {
                   return (
-                    <button className="flex justify-start rounded-full font-light border w-auto m-2 p-0.5" onClick={() => setTag(idx)}>
+                    <button className="flex justify-start rounded-full font-light border w-auto m-2 p-0.5 focus:bg-slate-200" onClick={() => setTag(idx)}>
                       <div className={tagColorArray[idx] + " w-2.5 h-2.5 my-auto mr-1 ml-2 rounded-full"}></div>
                       <span className="text-sm mr-2">{tag}</span>
                     </button>
@@ -120,7 +121,7 @@ const Write = () => {
 
           <div className="my-3">
             <div className="text-l mb-2 font-light">내용</div>
-            <input className=" bg-white border border-slate-300 h-32 w-full rounded-2xl focus:outline-none"
+            <textarea className=" bg-white border border-slate-300 h-32 w-full rounded-2xl focus:outline-none"
               onChange={getContent} />
           </div>
 
