@@ -2,15 +2,25 @@
   text-align: center;
 }
 
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @keyframes heart {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
+
   10% {
-      transform: scale(.8);
+    transform: scale(.8);
   }
+
   50% {
-      transform: scale(1.1);
+    transform: scale(1.1);
   }
 }
 
@@ -39,6 +49,7 @@
     width: 0;
     opacity: 1;
   }
+
   100% {
     width: 100%;
     opacity: 1;
@@ -49,9 +60,11 @@
   0% {
     scale: 0.8;
   }
+
   30% {
     scale: 1.1;
   }
+
   100% {
     scale: 1.0;
   }
