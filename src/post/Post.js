@@ -62,7 +62,7 @@ const PostMap = ({ postId, postLocation }) => {
   }, [postLocation]);
 
   return (
-    <div ref={mapContainer} id={postId} className="w-full h-full"></div>
+    <div ref={mapContainer} id={postId} className="w-full h-full relative -z-10"></div>
   );
 }
 
@@ -100,7 +100,7 @@ const Post = () => {
     <React.Fragment>
       <div className="animated-fade relative h-full bg-white
       flex flex-col drop-shadow-bg">
-        <div className="sticky top-0 bg-white z-99">
+        <div className="sticky top-0 bg-white relative z-9999">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
               해운대구
@@ -127,7 +127,7 @@ const Post = () => {
                   </div>
 
                   <div
-                    className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
+                    className="flex justify-center items-center w-full h-48 place-center">
                     <PostMap postId={item.title} postLocation={item.location} />
                   </div>
 
@@ -153,8 +153,8 @@ const Post = () => {
           w-[120px] h-[120px]
           sm:w-[150px] sm:h-[150px]
           hover:cursor-pointer hover:scale-110 transition
-          active:brightness-75
-          active:scale-110"
+            active:brightness-75
+            active:scale-110"
           onClick={write} ></Write>
       </div>
       <Nav />
