@@ -30,6 +30,7 @@ const Write = () => {
 
   function getContent(event) {
     setContent(event.target.value)
+    getDate()
   }
 
   function getDate() {
@@ -44,9 +45,9 @@ const Write = () => {
 
   async function postWrite() {
 
-    await getDate()
-    navigate("../post")
-
+    // await getDate()
+    // console.log(date)
+    
     const Writedata = {
       userId: "tmp",
       title: title,
@@ -55,6 +56,7 @@ const Write = () => {
       tag: tag,
       content: content
     }
+
     await axios.post("http://localhost:3004/api/post/write", {
       Writedata
     })
@@ -64,6 +66,7 @@ const Write = () => {
       .catch(() => {
         console.log("fail");
       });
+      await navigate(-1)
   }
 
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
@@ -125,7 +128,7 @@ const Write = () => {
               onChange={getContent} />
           </div>
 
-          <CompleteButton content="작성 완료" _event={postWrite} />
+          <CompleteButton content="작성 완료" _event={postWrite}/>
 
         </div>
       </div>
