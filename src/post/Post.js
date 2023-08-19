@@ -1,8 +1,10 @@
-import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
+import React, { Suspense, useEffect, useLayoutEffect, useState, useRef } from "react";
 import axios from 'axios';
 
 import { ReactComponent as Write } from "../img/icon/write.svg";
 import { ReactComponent as Position } from "../img/icon/position.svg";
+
+import LocationMarker from "../img/icon/location_select.svg";
 
 import Nav from "../component/BottomNav";
 import Loading from "../pages/Loading"
@@ -17,64 +19,71 @@ const { kakao } = window; // window 내 kakao 객체를 빼와서 사용
   - postId : 해당 post tag의 id (문자열)
   - postLocation : 해당 post의 주소 문자열 (DB에서 추출)
 */
-// const PostMap = (postId, postLocation) => {
-//   kakao.maps.load(async () => {
-//     const mapContainer = await document.getElementById(postId),
-//       mapOption = {
-//         center: new kakao.maps.LatLng(33.450701, 126.570667),
-//         level: 3
-//       };
+const PostMap = ({ postId, postLocation }) => {
+  // 요소가 준비되어 있는지 체크하기 위해 사용되는 useRef hook
+  // 함수가 아닌 함수 컴포넌트이므로 hook 사용 가능
+  const mapContainer = useRef(null);
 
-//     const map = await new kakao.maps.Map(mapContainer, mapOption);
-//     const geocoder = new kakao.maps.services.Geocoder();
+  // 요소가 생성된 후에 kakao map api를 사용하도록 함
+  useEffect(() => {
+    // 요소가 준비되지 않았으면, 아무것도 하지 않음
+    if (!mapContainer.current) return;
 
-//     geocoder.addressSearch(postLocation, function (result, status) {
-//       if (status === kakao.maps.services.Status.OK) {
-//         // 주소로 얻어낸 좌표
-//         let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    kakao.maps.load(async () => {
+      const mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+      };
 
-//         // 마커 생성
-//         const markerImage = new kakao.maps.MarkerImage(
-//           LocationMarker, 
-//           new kakao.maps.Size(40, 40)
-//         );
+      // mapContainer 변수를 지도 컨테이너 엘리먼트에 연결
+      const map = new kakao.maps.Map(mapContainer.current, mapOption);
+      const geocoder = new kakao.maps.services.Geocoder();
 
-//         let marker = new kakao.maps.Marker({
-//           map: map,
-//           position: coords,
-//           image: markerImage
-//         });
+      geocoder.addressSearch(postLocation, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-//         marker.setMap(map);
-//         map.setCenter(coords);
-//       }
-//     });
-//   });
+          const markerImage = new kakao.maps.MarkerImage(
+            LocationMarker,
+            new kakao.maps.Size(40, 40)
+          );
 
-//   return (
-//     <React.Fragment>
-//       <div id={postId} className="w-full h-full"></div>
-//     </React.Fragment>
-//   )
-// }
+          let marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+            image: markerImage
+          });
+
+          marker.setMap(map);
+          map.setCenter(coords);
+        }
+      });
+    });
+  }, [postLocation]);
+
+  return (
+    <div ref={mapContainer} id={postId} className="w-full h-full"></div>
+  );
+}
 
 const Post = () => {
-
-  const [lists, getlists] = useState([]);
-  const [len,getlistlen]=useState();
+  const [lists, setLists] = useState([]);
+  const [len, setListLength] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       await axios.get('http://localhost:3004/api/post/lists')
-      .then((res)=>{
-        getlists(res.data)
-        getlistlen(res.data.length-1)
-      }).catch(()=>{
-        console.log("fail")
-      })
+        .then((res) => {
+          setLists(res.data);
+          console.log(res.data);
+          setListLength(res.data.length - 1);
+        }).catch(() => {
+          console.log("fail");
+        })
     }
-    console.log(len)
-    fetchData()
+
+    console.log(len);
+    fetchData();
   }, []);
 
 
@@ -87,12 +96,11 @@ const Post = () => {
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
   const tagTextArray = ["지금당장", "어제갔다왔음", "오늘도하더라", "내일도한다"]
 
-
   return (
     <React.Fragment>
       <div className="animated-fade relative h-full bg-white
       flex flex-col drop-shadow-bg">
-        <div className="sticky top-0 bg-white">
+        <div className="sticky top-0 bg-white z-99">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
               해운대구
@@ -101,6 +109,7 @@ const Post = () => {
           </div>
           <hr className="mx-2" />
         </div>
+
         {
           lists.map((item, index) => {
             return (
@@ -116,17 +125,19 @@ const Post = () => {
                       {tagTextArray[item.tag]}
                     </div>
                   </div>
+
                   <div
                     className="flex justify-center items-center w-full h-48 bg-indigo-200 place-center">
-                    {/* TEST : postId 작성하고, DB에서 해당 글의 postLocation 입력 바람 */}
-                    {/* { PostMap("test", '부산 해운대구 달맞이길65번길 154 지하2층 카린') } */}
+                    <PostMap postId={item.title} postLocation={item.location} />
                   </div>
+
                   <div className="text-sm mt-2">
                     {item.content}
                   </div>
                   <br />
                 </div>
-                <div className={ len==index? null :'w-full border-b-2 border-d9d9d9' }></div>
+
+                <div className={len == index ? null : 'w-full border-b-2 border-d9d9d9'}></div>
               </div>
             )
           })
@@ -135,9 +146,17 @@ const Post = () => {
         <div className="h-[60px] sm:h-[120px]"></div>
       </div>
       
-      <Write className="fixed bottom-0 right-0
-        mb-14 -mr-0 self-end"
+      <div className="flex justify-end items-center">
+        
+        <Write className="fixed bottom-0 z-40
+          mb-12 sm:mb-20 -mr-3 self-end
+          w-[120px] h-[120px]
+          sm:w-[150px] sm:h-[150px]
+          hover:cursor-pointer hover:scale-110 transition
+          active:brightness-75
+          active:scale-110"
           onClick={write} ></Write>
+      </div>
       <Nav />
     </React.Fragment>
   );
