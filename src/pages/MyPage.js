@@ -19,23 +19,28 @@ const MyPage = () => {
         <React.Fragment>
             <div className={"w-full m-auto animated-fade bg-white drop-shadow-bg " + keepLength}>
                 {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
-                <div className="flex justify-center items-center 
-                text-lg font-medium py-3">
-                    내정보
+                <div className="sticky top-0 bg-white">
+                    <div className="flex justify-center items-center p-5">
+                        <span className="text-lg font-medium">
+                            내정보
+                        </span>
+                    </div>
+                    <hr className="mx-2" />
                 </div>
-                <div className="border-b-2 border-d9d9d9"></div>
-                <div className="m-5 font-bold">
+
+                <div className="m-5 my-7 font-bold">
                     <div className="text-xl">안녕하세요,</div>
-                    <div className="text-3xl my-2 ">{nickName}님!</div>
+                    <div className="text-3xl ">{nickName}님!</div>
                 </div>
-                <div className="border-b-2 border-d9d9d9 mt-8"></div>
+                <hr className="mx-2" />
+
                 <div className="text-lg font-medium m-3 text-center">찜목록</div>
                 {
                     keep.length == 0
                         ?
                         <div>
-                            <div className="justify-center items-center rounded-xl w-11/12 bg-slate-100 m-auto text-l font-bold py-10">
-                                <Heart className="m-auto mb-5" />
+                            <div className="justify-center items-center rounded-xl w-11/12 bg-slate-100 m-auto mt-4 text-l font-bold py-6">
+                                <Heart className="w-6 m-auto mb-3" />
                                 <div className="flex justify-center m-auto">찜한 행사가 없어요.</div>
                                 <div className="flex justify-center m-auto">가고 싶은 행사를 찜목록에 추가해 보세요.</div>
                             </div>
@@ -44,9 +49,9 @@ const MyPage = () => {
                         keep.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <div className="flex justify-between rounded-xl w-11/12 bg-slate-100 items-center m-auto mt-5">
-                                        <div className="text-xl font-bold p-2 px-6 my-4">{item}</div>
-                                        <Heart className="mr-5" />
+                                    <div className="flex justify-between rounded-xl w-11/12 bg-slate-100 items-center m-auto mt-4">
+                                        <div className="text-xl font-bold px-6 my-4">{item}</div>
+                                        <Heart className=" w-6 mr-5" />
                                     </div>
                                 </div>
                             )
