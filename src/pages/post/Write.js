@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import SelectLocation from "../component/SelectLocation";
-import CompleteButton from "../component/CompleteButton";
-import { ReactComponent as Position } from "../img/icon/position.svg";
-import { ReactComponent as Previous } from "../img/icon/back.svg";
+import SelectLocation from "../../component/SelectLocation";
+import CompleteButton from "../../component/CompleteButton";
+import { ReactComponent as Position } from "../../img/icon/position.svg";
+import { ReactComponent as Previous } from "../../img/icon/back.svg";
 
 
 const Write = () => {

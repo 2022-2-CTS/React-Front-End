@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect, useLayoutEffect, useState, useRef } from "react";
 import axios from 'axios';
 
-import { ReactComponent as Write } from "../img/icon/write.svg";
-import { ReactComponent as Position } from "../img/icon/position.svg";
+import { ReactComponent as Write } from "../../img/icon/write.svg";
+import { ReactComponent as Position } from "../../img/icon/position.svg";
 
-import LocationMarker from "../img/icon/location_select.svg";
+import LocationMarker from "../../img/icon/location_select.svg";
 
-import Nav from "../component/BottomNav";
-import Loading from "../pages/Loading"
+import Nav from "../../component/BottomNav";
 import { useNavigate } from "react-router-dom";
 
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.

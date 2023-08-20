@@ -12,8 +12,8 @@ import MyPage from "./pages/MyPage";
 import Detail from "./pages/Detail";
 import Nickname from "./pages/users/Nickname";
 
-import Post from "./post/Post";
-import PostWrite from "./post/PostWrite";
+import Post from "./pages/post/List";
+import PostWrite from "./pages/post/Write";
 
 import KakaoLogin from "./pages/users/socials/LoginForKakao";
 import NaverLogin from "./pages/users/socials/LoginForNaver";
