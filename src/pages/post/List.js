@@ -3,12 +3,11 @@ import axios from 'axios';
 
 import { ReactComponent as Write } from "../../img/icon/write.svg";
 import { ReactComponent as Position } from "../../img/icon/position.svg";
-import { ReactComponent as Logo } from "../../img/icon/logo.svg";
-
 
 import LocationMarker from "../../img/icon/location_select.svg";
 
 import Nav from "../../component/BottomNav";
+import SimpleLoading from "../../component/SimpleLoading";
 import { useNavigate } from "react-router-dom";
 
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
@@ -143,15 +142,7 @@ const Post = () => {
           {
             isCallLists ?
               null :
-              <div className="flex flex-col items-center justify-center h-screen 
-                relative fixed top-0 bg-transparent w-full -mt-24">
-                <Logo className="w-16 h-16 flex" />
-                <div className="flex mt-5">
-                  <span className="animated-load-circle delay-0   w-3 h-3 border border-0 rounded-full bg-main "></span>
-                  <span className="animated-load-circle delay-100 w-3 h-3 mx-2 border border-0 rounded-full bg-main"></span>
-                  <span className="animated-load-circle delay-500 w-3 h-3 border border-0 rounded-full bg-main"></span>
-                </div>
-              </div>
+              <SimpleLoading/>
           }
 
         </div>
