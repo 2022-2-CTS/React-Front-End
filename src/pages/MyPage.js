@@ -17,7 +17,7 @@ const MyPage = () => {
 
     return (
         <React.Fragment>
-            <div className={"w-full m-auto animated-fade bg-white drop-shadow-bg " + keepLength}>
+            <div className={"w-full m-auto animated-fade bg-white drop-shadow-bg sm:h-screen max-sm:" + keepLength}>
                 {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
                 <div className="sticky top-0 bg-white">
                     <div className="flex justify-center items-center p-5">

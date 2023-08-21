@@ -22,7 +22,7 @@ const App = () => {
   return (
     <React.Fragment>
 
-      <div className="max-w-[640px] w-full m-auto">
+      <div className="max-w-[640px] w-full m-auto transition-all">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Intro />} />
