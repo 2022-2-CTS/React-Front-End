@@ -1,4 +1,5 @@
-import React, { Suspense, useEffect, useLayoutEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import { ReactComponent as Write } from "../../img/icon/write.svg";
@@ -8,7 +9,6 @@ import LocationMarker from "../../img/icon/location_select.svg";
 
 import Nav from "../../component/BottomNav";
 import SimpleLoading from "../../component/SimpleLoading";
-import { useNavigate } from "react-router-dom";
 
 // 스크립트로 kakao map api를 심어서 가져오면, window 전역 객체에 들어가게 된다.
 // 함수형 컴포넌트에서는 바로 인식하지 못하므로, kakao 객체를 인지시키고자 상단에 선언해둔다.
@@ -67,6 +67,7 @@ const PostMap = ({ postId, postLocation }) => {
 }
 
 const Post = () => {
+
   const [lists, setLists] = useState([]);
   const [len, setListLength] = useState();
   const [isCallLists, setIsCallLists] = useState(false);
@@ -155,17 +156,20 @@ const Post = () => {
                 <div key={index} className="flex flex-col w-11/12 m-auto">
                   <div className="flex justify-between my-2">
                     <div>
-                      <div className="text-l font-bold">{item.title}</div>
-                      <div className="text-xs -mt-1" >{item.date}</div>
+                      <div className="text-l font-bold">
+                        {item.title}
+                        </div>
+                      <div className="text-xs -mt-1" >
+                        {item.date}
+                        </div>
                     </div>
                     <div className="rounded-full border w-auto text-xs font-light flex justify-start items-center h-6 mt-2 pl-1 pr-3">
-                      <div className={tagColorArray[item.tag] + ' w-2.5 h-2.5 m-1 rounded-full'}></div>
+                      <div className={tagColorArray[item.tag] + ' w-2.5 h-2.5 m-1 rounded-full'}/>
                       {tagTextArray[item.tag]}
                     </div>
                   </div>
 
-                  <div
-                    className="flex justify-center items-center w-full h-48 place-center">
+                  <div className="flex justify-center items-center w-full h-48 place-center">
                     <PostMap postId={item.title} postLocation={item.location} />
                   </div>
 
@@ -175,7 +179,8 @@ const Post = () => {
                   <br />
                 </div>
 
-                <div className={len == index ? null : 'w-full border-b-2 border-d9d9d9'}></div>
+                <div className={len == index ? null : 'w-full border-b-2 border-d9d9d9'}/>
+
               </div>
             )
           })
@@ -191,11 +196,14 @@ const Post = () => {
           w-[120px] h-[120px]
           sm:w-[150px] sm:h-[150px]
           hover:cursor-pointer hover:scale-110 transition
-            active:brightness-75
-            active:scale-110"
-          onClick={write} ></Write>
+          active:brightness-75
+          active:scale-110"
+          onClick={write} />
+
       </div>
+
       <Nav />
+      
     </React.Fragment>
   );
 };

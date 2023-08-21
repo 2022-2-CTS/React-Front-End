@@ -18,7 +18,7 @@ const MyPage = () => {
     return (
         <React.Fragment>
             <div className={"w-full m-auto animated-fade bg-white drop-shadow-bg sm:h-screen max-sm:" + keepLength}>
-                {/* <div className="w-full m-auto animated-fade bg-white h-full"> */}
+
                 <div className="sticky top-0 bg-white">
                     <div className="flex justify-center items-center p-5">
                         <span className="text-lg font-medium">
@@ -29,9 +29,14 @@ const MyPage = () => {
                 </div>
 
                 <div className="m-5 my-7 font-bold">
-                    <div className="text-xl">안녕하세요,</div>
-                    <div className="text-3xl ">{nickName}님!</div>
+                    <div className="text-xl">
+                        안녕하세요,
+                    </div>
+                    <div className="text-3xl ">
+                        {nickName}님!
+                    </div>
                 </div>
+
                 <hr className="mx-2" />
 
                 <div className="text-lg font-medium m-3 text-center">찜목록</div>
@@ -41,8 +46,13 @@ const MyPage = () => {
                         <div>
                             <div className="justify-center items-center rounded-xl w-11/12 bg-slate-100 m-auto mt-4 text-l font-bold py-6">
                                 <Heart className="w-6 m-auto mb-3" />
-                                <div className="flex justify-center m-auto">찜한 행사가 없어요.</div>
-                                <div className="flex justify-center m-auto">가고 싶은 행사를 찜목록에 추가해 보세요.</div>
+                                <div className="flex justify-center m-auto">
+                                    찜한 행사가 없어요.
+                                </div>
+
+                                <div className="flex justify-center m-auto">
+                                    가고 싶은 행사를 찜목록에 추가해 보세요.
+                                </div>
                             </div>
                         </div>
                         :
@@ -50,12 +60,13 @@ const MyPage = () => {
                             return (
                                 <div key={index}>
                                     <div className="flex justify-between rounded-xl w-11/12 bg-slate-100 items-center m-auto mt-4">
-                                        <div className="text-xl font-bold px-6 my-4">{item}</div>
+                                        <div className="text-xl font-bold px-6 my-4">
+                                            {item}
+                                        </div>
                                         <Heart className=" w-6 mr-5" />
                                     </div>
                                 </div>
                             )
-
                         })
                 }
                 <div className="h-[85px] sm:h-[120px] bg-white"></div>

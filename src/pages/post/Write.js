@@ -10,9 +10,9 @@ import { ReactComponent as Previous } from "../../img/icon/back.svg";
 
 const Write = () => {
   // 선택된 위치 주소 문자열
-  let [location, setLocation] = useState("");
+  const [location, setLocation] = useState("");
   // 위치 선택 컴포넌트 toggle
-  let [selectLocationToggle, setSelectLocationToggle] = useState(false);
+  const [selectLocationToggle, setSelectLocationToggle] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,9 +45,6 @@ const Write = () => {
 
   async function postWrite() {
 
-    // await getDate()
-    // console.log(date)
-    
     const Writedata = {
       userId: "tmp",
       title: title,
@@ -66,7 +63,8 @@ const Write = () => {
       .catch(() => {
         console.log("fail");
       });
-      await navigate(-1)
+
+    await navigate(-1)
   }
 
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
@@ -76,9 +74,14 @@ const Write = () => {
   return (
     <React.Fragment>
       <div className="animated-fade bg-white h-screen drop-shadow-bg">
-        {selectLocationToggle ? <SelectLocation className="fixed left-0 top-0 right-0"
-          setLocation={setLocation}
-          setSelectLocationToggle={setSelectLocationToggle}></SelectLocation> : null}
+        {
+          selectLocationToggle
+            ? <SelectLocation className="fixed left-0 top-0 right-0"
+              setLocation={setLocation}
+              setSelectLocationToggle={setSelectLocationToggle} />
+            : null
+        }
+
         <div className="sticky top-0 bg-white">
           <div className="flex justify-center items-center p-5">
             <Previous className="absolute left-0 ml-5" onClick={() => navigate(-1)} />
@@ -112,12 +115,15 @@ const Write = () => {
           <div className="flex flex-wrap -mt-4">
             {
               tagTextArray.map((tag, idx) => {
-                  return (
-                    <button className="flex justify-start rounded-full font-light border w-auto m-2 p-0.5 focus:bg-slate-200" onClick={() => setTag(idx)}>
-                      <div className={tagColorArray[idx] + " w-2.5 h-2.5 my-auto mr-1 ml-2 rounded-full"}></div>
-                      <span className="text-sm mr-2">{tag}</span>
-                    </button>
-                  )
+                return (
+                  <button className="flex justify-start rounded-full font-light border w-auto m-2 p-0.5 focus:bg-slate-200"
+                    onClick={() => setTag(idx)}>
+                    <div className={tagColorArray[idx] + " w-2.5 h-2.5 my-auto mr-1 ml-2 rounded-full"} />
+                    <span className="text-sm mr-2">
+                      {tag}
+                    </span>
+                  </button>
+                )
               })
             }
           </div>
@@ -128,7 +134,7 @@ const Write = () => {
               onChange={getContent} />
           </div>
 
-          <CompleteButton content="작성 완료" _event={postWrite}/>
+          <CompleteButton content="작성 완료" _event={postWrite} />
 
         </div>
       </div>
