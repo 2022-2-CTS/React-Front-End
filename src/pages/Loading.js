@@ -10,13 +10,13 @@ const Loading = () => {
     function delay(){
         const timeout = setTimeout(() => {
             navigate('/map');
-        }, 4900);
+        }, 4800);
     }
 
     function nickname(){
         const timeout = setTimeout(() => {
             navigate('/signup/nickname');
-        }, 4900);
+        }, 4800);
     }
 
     useEffect(() => {
@@ -28,15 +28,14 @@ const Loading = () => {
             registerType : registerType,
             userId : userId
         }).then((req) => {
-            console.log(req.data)
-            console.log(req.data)
-            if(req.data == "exist"){
+            if(req.data.status == "success"){
+                localStorage.setItem("nickname", req.data.data)
                 delay();
             }else{
                 nickname();
             }
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
         })
 
         // return () => {

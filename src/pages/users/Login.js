@@ -99,7 +99,7 @@ const SignIn = () => {
       if (req.data.status != "fail") {
         console.log(req.data)
         navigate('/loading')
-        localStorage.setItem("registerType", "USER")
+        localStorage.setItem("userType", "USER")
         localStorage.setItem("userToken", req.data.data)
         localStorage.setItem("id", id)
       }else{

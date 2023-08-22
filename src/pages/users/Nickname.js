@@ -10,27 +10,31 @@ const RegisterNickname = () => {
     const navigate = useNavigate();
 
     const [nickname, setNickname] = useState('')
+    const [inputCount, setInputCount] = useState(0)
 
     function changeNicknameHandler(event) {
         setNickname(event.target.value)
+        setInputCount(event.target.value.length)
     }
 
     function registerNicknameButton() {
-        var registerType = localStorage.getItem("registerType")
-        var userId = localStorage.getItem("id")
+        if(inputCount >= 2 && inputCount <= 8){
+            var userType = localStorage.getItem("userType")
+            var userId = localStorage.getItem("id")
 
-        console.log(userId)
+            console.log(userId)
 
-        axios.post('http://localhost:3004/api/signup/nickname/', {
-            registerType: registerType,
-            userId: userId,
-            nickname: nickname
-        }).then((req) => {
-            console.log(req.data)
-            navigate('/loading')
-        }).catch((err) => {
-            console.log(err)
-        })
+            axios.post('http://localhost:3004/api/signup/nickname/', {
+                userType: userType,
+                userId: userId,
+                nickname: nickname
+            }).then((req) => {
+                localStorage.setItem("nickname", req.data.data)
+                navigate('/loading')
+            }).catch((err) => {
+                // console.log(err)
+            })
+        }
     }
 
     return (
@@ -45,16 +49,11 @@ const RegisterNickname = () => {
                 </div>
                 <input className="border border-[#D9D9D9] rounded-2xl
                 p-3 px-5"
-                    onChange={changeNicknameHandler}></input>
+                    onChange={changeNicknameHandler} minLength="2" maxLength="8"></input>
                 <div className="text-center color-[#4B4B4B] font-light text-sm my-3">
                     (최소 2자, 최대 8자)
                 </div>
                     
-                {/* <div className="flex justify-center align-center rounded-xl border-0 w-11/12 py-4 bg-[#1F83EB]
-                absolute bottom-0 mb-3"
-                onClick={registerNicknameButton}>
-                    <p className="font-bold text-xl text-white">완료</p>
-                </div> */}
                 <CompleteButton content="완료"
                     _class="absolute bottom-0 mb-3 w-11/12"
                     _event={registerNicknameButton} />

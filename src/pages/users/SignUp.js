@@ -75,7 +75,6 @@ const Login = () => {
         axios.post('http://localhost:3004/api/signup/check/id/valid',{
             userId : id,
         }).then((req) => {
-            console.log(req.data)
             if (req.data.status == 'success'){
                 setIdValidCheck(true)
                 if (id != ''){
@@ -107,7 +106,7 @@ const Login = () => {
                 if(req.data.status == "success"){
                     navigate('/login')
                 }else{
-                    console.log(req.data)
+                    //msg를 다루는 부분
                 }
             }).catch((err) => {
                 console.log(err)

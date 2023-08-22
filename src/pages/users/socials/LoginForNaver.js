@@ -24,7 +24,7 @@ const LoginForNaver = () => {
             if (req.data.data == "로그인 성공!!"){
                 localStorage.setItem("naverLoginJWT", req.data.token)
                 localStorage.setItem("id", req.data.naverNickname)
-                localStorage.setItem("registerType", "NAVER")
+                localStorage.setItem("userType", "NAVER")
                 navigate('/loading')
             }else{
                 navigate('/signin')
