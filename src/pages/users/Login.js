@@ -20,21 +20,23 @@ const SignIn = () => {
     visible: false,
   });
 
-  const validToken = localStorage.getItem("userToken")
+  const userToken = localStorage.getItem("userToken")
   const kakaoAccessToken = localStorage.getItem('kakaoLoginJWT')
   const naverAccessToken = localStorage.getItem('naverLoginJWT')
   const client_id = '432961785509-qqi0ut13397irei6m61up42os7bc59t3.apps.googleusercontent.com'
 
   useEffect(() => {
     //console.log(validToken)
-    if (validToken != null) {
+    if (userToken != null) {
       axios.post('http://localhost:3004/api/login/status', {
-        validToken
+        userToken
       }).then((res) => {
         console.log(res.data)
-        if (localStorage.getItem("id") == res.data.id) {
-          console.log("일치합니다.")
-          navigate('/map')
+        if(res.data.data.result == "true"){
+          if (localStorage.getItem("id") == res.data.id) {
+            console.log("일치합니다.")
+            navigate('/map')
+          }
         }
       }).catch((err) => {
         console.log(err)
@@ -91,16 +93,17 @@ const SignIn = () => {
 
   function loginForApp() {
     const ciphertext = crypto.AES.encrypt(pw, 'culture').toString();
-    console.log(ciphertext)
+    var _id = id.replace(/(\s*)/g,'')
+    console.log(_id.length)
     axios.post("http://localhost:3004/api/login/", {
-      userId: id,
+      userId: _id,
       userPw: ciphertext,
     }).then((req) => {
-      if (req.data.status != "fail") {
+      if (req.data.data.result != "false") {
         console.log(req.data)
         navigate('/loading')
         localStorage.setItem("userType", "USER")
-        localStorage.setItem("userToken", req.data.data)
+        localStorage.setItem("userToken", req.data.data.token)
         localStorage.setItem("id", id)
       }else{
         console.log(req.data.data.msg)
