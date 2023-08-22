@@ -90,21 +90,20 @@ const SignIn = () => {
   }
 
   function loginForApp() {
-    console.log("앱 로그인")
-    console.log(id)
-    console.log(pw)
     const ciphertext = crypto.AES.encrypt(pw, 'culture').toString();
     console.log(ciphertext)
     axios.post("http://localhost:3004/api/login/", {
-      sendId: id,
-      sendPw: ciphertext,
+      userId: id,
+      userPw: ciphertext,
     }).then((req) => {
-      console.log(req.data)
-      if (req.data != "fail") {
+      if (req.data.status != "fail") {
+        console.log(req.data)
         navigate('/loading')
         localStorage.setItem("registerType", "USER")
-        localStorage.setItem("userToken", req.data.token)
+        localStorage.setItem("userToken", req.data.data)
         localStorage.setItem("id", id)
+      }else{
+        console.log(req.data.data.msg)
       }
     }).catch((err) => {
       console.log(err)
