@@ -73,12 +73,11 @@ const Login = () => {
         console.log(id)
         console.log(saveId)
         axios.post('http://localhost:3004/api/signup/check/id/valid',{
-            sendValidId : id,
+            userId : id,
         }).then((req) => {
             console.log(req.data)
-            if (req.data == 'success'){
+            if (req.data.status == 'success'){
                 setIdValidCheck(true)
-                console.log("오!!")
                 if (id != ''){
                     setIdButtonHandler('사용할 수 있는 아이디 입니다.')
                     setSaveId(id)
@@ -87,7 +86,6 @@ const Login = () => {
                 }
             }else{
                 setIdValidCheck(false)
-                console.log("오잉?")
                 if (id != ''){
                     setIdButtonHandler('사용할 수 없는 아이디 입니다.')
                 }else{
@@ -101,17 +99,15 @@ const Login = () => {
 
     function complete(){
         if(passwordMatch){
-            console.log(id)
-            console.log(password)
             const ciphertextPw = crypto.AES.encrypt(password, 'culture').toString();
             axios.post("http://localhost:3004/api/signup",{
-                sendId : id,
-                sendPw : ciphertextPw,
+                userId : id,
+                userPw : ciphertextPw,
             }).then((req) => {
-                console.log("왜 안돼!!")
-                console.log(req.data)
-                if(req.data == "가입완료"){
+                if(req.data.status == "success"){
                     navigate('/login')
+                }else{
+                    console.log(req.data)
                 }
             }).catch((err) => {
                 console.log(err)
