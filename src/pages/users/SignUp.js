@@ -121,46 +121,48 @@ const Login = () => {
 
     return (
         <div className="px-6 py-24 bg-white h-screen">
-            <div className="grid grid-cols-4 gap-3 ">
-                <div className="font-bold text-2xl col-start-1 col-span-3">회원가입</div>
-                <div className="col-span-3">
+            <div className="flex flex-col">
+                <div className="font-bold text-4xl">회원가입</div>
+                <div className="mt-5">
                     <label className="block">
-                        <span className="block text-sm font-medium text-slate-700">
+                        <span className="block text-m font-medium text-slate-700 mb-2">
                             아이디
                         </span>
-                        <input type="text" name="id" className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-xl sm:text-sm focus:ring-1" 
-                            onChange={saveUserId}
-                        />
+                        <div className="flex flex-row">
+                            <input type="text" name="id" className="basis-3/4 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-2xl sm:text-sm focus:ring-1" 
+                                onChange={saveUserId}
+                            />
+                            <div className="basis-1/4 ml-5">
+                                <button className=" rounded-2xl h-full border-0 bg-main w-full"
+                                    onClick={checkValidId}
+                                >
+                                    <p className="text-white text-sm font-bold">
+                                        확인
+                                    </p>
+                                </button>
+                            </div>
+                        </div>
                     </label>
                 </div>
-                <div className="mt-6">
-                    <button className="rounded-xl h-full border-0 bg-main py-2 w-full"
-                        onClick={checkValidId}
-                    >
-                        <p className="text-white text-sm font-bold">
-                            확인
-                        </p>
-                    </button>
-                </div>
-                <div className="col-span-3">
+                <div className="mt-1">
                     <p className="font-light text-sm font-bold text-green-600">{idButtonHandler}</p>
                 </div>
-                <div className="col-span-4 mt-4">
+                <div className="my-4">
                     <label className="block">
-                        <span className="block text-sm font-medium text-slate-700">
+                        <span className="block text-m font-medium text-slate-700 mb-2">
                             비밀번호
                         </span>
-                        <input type="password" name="password" className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-xl sm:text-sm focus:ring-1" 
+                        <input type="password" name="password" className="mt-1 px-3 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-2xl sm:text-sm focus:ring-1" 
                             onChange={saveUserPw}
                         />
                     </label>
                 </div>
                 <div className="col-span-4">
                     <label className="block">
-                        <span className="block text-sm font-medium text-slate-700">
+                        <span className="block text-m font-medium text-slate-700 mb-2">
                             비밀번호 확인
                         </span>
-                        <input type="password" name="password" className="mt-1 px-3 py-2 pr-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-xl sm:text-sm focus:ring-1" 
+                        <input type="password" name="password" className="mt-1 px-3 py-3 pr-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-2xl sm:text-sm focus:ring-1" 
                             onChange={saveUserConfirmPw}
                         />
                     </label>
@@ -168,9 +170,9 @@ const Login = () => {
                 {
                     blankCheck 
                     ? 
-                    <div className="col-span-3" />
+                    <div className="mt-1" />
                     : 
-                    <div className="col-span-3">
+                    <div className="mt-1">
                         {passwordMatch ? <p className="font-light text-sm font-bold text-green-600">
                             비밀번호가 일치합니다.
                         </p> : 
@@ -179,7 +181,7 @@ const Login = () => {
                         </p>}
                     </div>
                 }
-                <div className="col-span-4 mt-4">
+                <div className="mt-10">
                     {
                         finish
                             ?
