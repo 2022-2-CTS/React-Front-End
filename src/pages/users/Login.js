@@ -151,33 +151,34 @@ const SignIn = () => {
               </div>
             </div>
 
-            <div className="grid grid-rows-4 gap-3 w-3/4 m-auto">
+            <div className="mt-10">
               {/* ID input */}
-              <div>
-                <input type="text" name="id" className="mt-1 px-5 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 
-                focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-xl 
-                sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" 
+              <div className="mx-10 my-5">
+                <input type="text" name="id" className="mt-1 px-6 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 
+                focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-2xl 
+                sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm placeholder:font-bold" 
                 placeholder="아이디" onChange={saveUserId} />
               </div>
 
               {/* PW input */}
-              <div className="relative">
-                <input type={pwType.type} name="password" className="mt-1 px-5 py-3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 
-                focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-xl 
-                sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm" 
+              <div className="relative mx-10 my-5">
+                <input type={pwType.type} name="password" className="mt-1 px-6 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 
+                focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-2xl 
+                sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm placeholder:font-bold" 
                 placeholder="비밀번호" onChange={saveUserPw} />
 
                 <span className="absolute inset-y-0 right-0 my-4 mx-3 flex items-center" onClick={handlePasswordType}>
                   {pwType.visible ? <Visibility /> : <Visibility_off />}
                 </span>
               </div>
-
-              <button className="rounded-xl border-solid border-0 bg-[#1F83EB]"
-                onClick={loginForApp}>
-                <p className="font-bold text-white">
-                  로그인
-                </p>
-              </button>
+              <div className="relative mx-10 my-5">
+                <button className="rounded-2xl border-solid border-0 bg-[#1F83EB] w-full px-5 py-4"
+                  onClick={loginForApp}>
+                  <p className="font-bold text-white text-xl">
+                    로그인
+                  </p>
+                </button>
+              </div>
 
               {/* text */}
               <div className="font-light text-black text-sm">
@@ -190,9 +191,9 @@ const SignIn = () => {
               </div>
 
               {/* social login img */}
-              <div className="flex justify-center items-center -my-6">
-                <img onClick={loginForKakao} className="w-1/6 mr-4 max-w-xs" src="images/kakao_login_circle.png"></img>
-                <img onClick={loginForNaver} className="w-1/6 max-w-xs" src="images/btnG_아이콘원형.png"></img>
+              <div className="flex justify-center items-center mt-6">
+                <img onClick={loginForKakao} className="w-12 mr-4 max-w-xs" src="images/kakao_login_circle.png"></img>
+                <img onClick={loginForNaver} className="w-12 max-w-xs" src="images/btnG_아이콘원형.png"></img>
                 {/* <img onClick={loginForGoogle} className="w-10" src="images/pngwing.com.png"></img> */}
               </div>
             </div>
