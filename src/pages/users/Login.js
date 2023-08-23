@@ -33,9 +33,9 @@ const SignIn = () => {
       }).then((res) => {
         console.log(res.data)
         if(res.data.data.result == "true"){
-          if (localStorage.getItem("id") == res.data.id) {
+          if (localStorage.getItem("id") == res.data.data) {
             console.log("일치합니다.")
-            navigate('/map')
+            navigate('/loading')
           }
         }
       }).catch((err) => {
