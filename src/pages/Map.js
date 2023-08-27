@@ -9,6 +9,7 @@ import MarkerMusical from "../img/icon/marker_musical_red.svg";
 import MarkerPlay from "../img/icon/marker_play_blue.svg";
 import MarkerExhibition from "../img/icon/marker_exhibition_green.svg";
 import MarkerConcert from "../img/icon/marker_concert_yellow.svg";
+import MyPositionMarker from "../img/icon/map_myposition.svg";
 
 import { ReactComponent as Position } from "../img/icon/position.svg";
 
@@ -147,17 +148,15 @@ const Map = () => {
 
             const map = new kakao.maps.Map(container, options);
 
+                        
+            let nowPositionMarker = new kakao.maps.Marker({
+                map: map,
+                position: new kakao.maps.LatLng(myLat, myLng),
+                image: new kakao.maps.MarkerImage(MyPositionMarker, new kakao.maps.Size(55, 55))
+            });
+
             // 주소-좌표 변환 객체 생성
             const geocoder = new kakao.maps.services.Geocoder();
-
-            var testData = {
-                title: "METAPHORIC SCENERY : 은유적 풍경",
-                location: "부산 해운대구 달맞이길65번길 154 지하2층 카린갤러리",
-                startDate: "2023.07.07",
-                endDate: "2023.08.27",
-                time: "10:00 - 18:00 (월요일 휴무)",
-                price: "무료"
-            }
 
             setMap(map);
             setGeocoder(geocoder);
