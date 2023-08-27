@@ -134,9 +134,9 @@ const SignIn = () => {
       {/* wave (배경) */}
       <div className="bg-wave w-full h-full bg-cover flex justify-center items-center">
         <div className="flex justify-center items-center text-center h-screen animated-fade">
-          <div className="">
+          <div>
             {/* Title */}
-            <div className="w-1/2 m-auto">
+            <div className="w-3/5 md:w-1/2 m-auto">
               <Logo className="m-auto w-1/2 mb-2 h-full relative" />
 
               <div className="logo-font text-center text-2xl
@@ -169,12 +169,13 @@ const SignIn = () => {
                 sm:text-sm focus:ring-1 placeholder:text-slate-400 placeholder:text-sm placeholder:font-bold" 
                 placeholder="비밀번호" onChange={saveUserPw} />
 
-                <span className="absolute inset-y-0 right-0 my-4 mx-3 flex items-center" onClick={handlePasswordType}>
+                <span className="absolute inset-y-0 right-0 my-4 mx-3 flex items-center hover:cursor-pointer" onClick={handlePasswordType}>
                   {pwType.visible ? <Visibility /> : <Visibility_off />}
                 </span>
               </div>
               <div className="relative mx-10 my-5">
-                <button className="rounded-2xl border-solid border-0 bg-[#1F83EB] w-full px-5 py-4"
+                  <button className="rounded-2xl border-solid border-0 bg-[#1F83EB] w-full px-5 py-4
+                  hover:brightness-90"
                   onClick={loginForApp}>
                   <p className="font-bold text-white text-xl">
                     로그인
@@ -194,9 +195,13 @@ const SignIn = () => {
 
               {/* social login img */}
               <div className="flex justify-center items-center mt-6">
-                <img onClick={loginForKakao} className="w-12 mr-4 max-w-xs" src="images/kakao_login_circle.png"></img>
-                <img onClick={loginForNaver} className="w-12 max-w-xs" src="images/btnG_아이콘원형.png"></img>
-                {/* <img onClick={loginForGoogle} className="w-10" src="images/pngwing.com.png"></img> */}
+                <img onClick={loginForKakao} 
+                className="w-1/3 mr-4 max-w-xs hover:brightness-90 hover:cursor-pointer" 
+                src="images/social_login/kakao_login.png"></img>
+
+                <img onClick={loginForNaver} 
+                className="w-1/3 max-w-xs hover:brightness-90 hover:cursor-pointer" 
+                src="images/social_login/naver_login.png"></img>
               </div>
             </div>
           </div>
