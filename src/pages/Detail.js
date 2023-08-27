@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 import '../App.css';
 
@@ -8,11 +9,79 @@ import { ReactComponent as Heart } from "../img/icon/heart.svg";
 import { ReactComponent as HeartActive } from "../img/icon/heart_active.svg";
 import { ReactComponent as Location } from "../img/icon/location.svg";
 
+// 찜 목록 추가 시, 안내 메시지를 하단에 띄우는 컴포넌트
+function HeartStatus({setIsibleHeartStatus}) {
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+        }, 4000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+
+    if (!isVisible) {
+        setIsibleHeartStatus(false);
+        return null;
+    }
+
+    return (
+        <React.Fragment>
+            <div className="bg-white w-2/3 text-center rounded-full mt-3 py-1
+                shadow-2xl border border-black-200
+                flex items-center justify-center
+                sticky fixed bottom-5 m-auto
+                animated-fade-full">
+                <span className="flex justify-center items-center">
+                    <HeartActive className="mr-2 w-5"/>
+                    찜 목록에 추가되었습니다.
+                </span>
+            </div>
+        </React.Fragment>
+    );
+}
+
 const Detail = () => {
     let [heart, setHeart] = useState(false);
+    let [isVisibleHeartStatus, setIsibleHeartStatus] = useState(false);
+
     const navigate = useNavigate();
     const location = useLocation();
     let eventInfo = { ...location.state }
+
+    async function addFavorites() {
+        setIsibleHeartStatus(true);
+
+        let favoriteData = {
+            favoriteObject: {
+                userId: localStorage.getItem('id'),
+                event: {
+                    title: eventInfo.title,
+                    location: eventInfo.location,
+                    startDate: eventInfo.startDate,
+                    endDate: eventInfo.endDate,
+                    time: eventInfo.time,
+                    price: eventInfo.price,
+                    src: eventInfo.src
+                }
+            }
+        }
+        await axios.post('http://localhost:3004/api/user/favorite', favoriteData
+        ).then((res) => {
+            if (res.data.status === "success") {
+                setIsibleHeartStatus(true);
+            }
+            else if (res.data.status === "fail") {
+                console.log(res.data.data.msg);
+            }
+            else if (res.data.status === "error") {
+                console.log(res.data.msg);
+            }
+        })
+    }
 
     return (
         <React.Fragment>
@@ -21,16 +90,22 @@ const Detail = () => {
                 <div className="flex justify-between items-center p-5 
                 sticky top-0 bg-white">
                     <Previous className="hover:cursor-pointer hover:scale-110 transition"
-                    onClick={() => navigate('/map')}
+                        onClick={() => navigate('/map')}
                     />
                     <span className="text-lg font-medium">
                         상세 정보
                     </span>
                     {
                         heart ?
-                        <HeartActive className="animated-heart hover:cursor-pointer hover:scale-105 transition" onClick={() => setHeart(!heart)} /> :
-                        <Heart className="hover:cursor-pointer hover:scale-110 transition"
-                        onClick={() => setHeart(!heart)} />
+                            <HeartActive className="animated-heart hover:cursor-pointer hover:scale-105 transition"
+                                onClick={() => {
+                                    setHeart(!heart);
+                                }} /> :
+                            <Heart className="hover:cursor-pointer hover:scale-110 transition"
+                                onClick={() => {
+                                    setHeart(!heart);
+                                    addFavorites();
+                                }} />
                     }
                 </div>
 
@@ -39,8 +114,6 @@ const Detail = () => {
                 {/* content */}
                 <div className="flex flex-col m-auto justify-center w-5/6">
                     {/* poster */}
-                    {/* <img alt="img"
-                    src="https://busandabom.net/images/contents/play_img_5354.jpg" /> */}
                     <img alt="img"
                         src={eventInfo.src} />
 
@@ -88,6 +161,15 @@ const Detail = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Heart Status */}
+                {
+                    isVisibleHeartStatus ?
+                    <HeartStatus 
+                    setIsibleHeartStatus={setIsibleHeartStatus} /> :
+                    null
+                }
+                
             </div>
         </React.Fragment>
     );
