@@ -21,15 +21,15 @@ const Loading = () => {
 
     useEffect(() => {
 
-        var registerType = localStorage.getItem("registerType");
+        var userType = localStorage.getItem("userType");
         var userId = localStorage.getItem("id");
 
         axios.post("http://localhost:3004/api/signup/nickname/status", {
-            registerType : registerType,
+            userType : userType,
             userId : userId
         }).then((req) => {
             if(req.data.status == "success"){
-                localStorage.setItem("nickname", req.data.data)
+                localStorage.setItem("nickname", req.data.data.nickname)
                 delay();
             }else{
                 nickname();

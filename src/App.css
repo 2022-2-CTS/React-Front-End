@@ -34,6 +34,20 @@ body {
   }
 }
 
+@keyframes fade-full {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes translate_x {
   0% {
     transform: translateX(calc(-210%));
@@ -82,12 +96,17 @@ body {
   }
 }
 
+
 .animated-heart {
   animation: heart 1s cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 .animated-fade {
   animation: fade 1s;
+}
+
+.animated-fade-full {
+  animation: fade-full 4s;
 }
 
 .load_seagull {
