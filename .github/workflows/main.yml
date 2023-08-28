@@ -18,8 +18,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_TOKEN }}
         with:
-          destination-github-username: 'bluebluerabbit'
-          destination-repository-name: 'Seagull-React'
+          destination-github-username: '2022-2-CTS'
+          destination-repository-name: 'React-Front-End'
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
