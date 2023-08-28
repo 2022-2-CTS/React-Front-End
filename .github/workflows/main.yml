@@ -18,7 +18,6 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_TOKEN }}
         with:
-          source-directory: 'output'
           destination-github-username: 'bluebluerabbit'
           destination-repository-name: 'Seagull-React'
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
