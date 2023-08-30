@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { ReactComponent as Write } from "../../img/icon/write.svg";
 import { ReactComponent as Position } from "../../img/icon/position.svg";
+import { ReactComponent as Location } from "../../img/icon/location.svg";
 
 import LocationMarker from "../../img/icon/location_select.svg";
 
@@ -71,57 +72,69 @@ const Post = () => {
   const [lists, setLists] = useState([]);
   const [len, setListLength] = useState();
   const [isCallLists, setIsCallLists] = useState(false);
+  const [splitNowPositionString, setSplitNowPositionString] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       await axios.get('http://localhost:3004/api/post/lists')
         .then((res) => {
-          setLists(res.data);
-          setListLength(res.data.length - 1);
-          setIsCallLists(true);
-        }).catch(() => {
-          console.log("fail");
-          setLists([
-            {
-              title: "test",
-              date: "test",
-              tag: 0,
-              content: "test"
-            },
-            {
-              title: "test",
-              date: "test",
-              tag: 0,
-              content: "test"
-            },
-            {
-              title: "test",
-              date: "test",
-              tag: 0,
-              content: "test"
-            },
-            {
-              title: "test",
-              date: "test",
-              tag: 0,
-              content: "test"
-            },
-          ]);
-
-          // setTimeout(() => setIsCallLists(true), 2000);
-
+          try {
+            if (res.data.status == "success") {
+              let data = JSON.parse(res.data.data)
+              setLists(data);
+              setListLength(res.data.data.length - 1);
+              setIsCallLists(true);
+            }
+          } catch {
+            return
+          }
         })
     }
 
     console.log(len);
     fetchData();
+    
+    splitNowPosition();
   }, []);
-
 
   const navigate = useNavigate();
 
   function write() {
     navigate("./write")
+  }
+
+  // 현재 위치를 좌표 값으로 받아와 주소로 변환한 후, '구' 단위를 추출함
+  // 저장된 '구' 단위 문자열 : splitNowPositionString
+  function splitNowPosition() {
+    kakao.maps.load(() => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          let lat = position.coords.latitude, // 위도
+            lng = position.coords.longitude; // 경도
+
+
+          // 주소-좌표 변환 객체 생성
+          const geocoder = new kakao.maps.services.Geocoder();
+
+          function searchDetailAddrFromCoords(geocoder, coords, callback) {
+            let setCoords = new kakao.maps.LatLng(coords[0], coords[1]);
+            geocoder.coord2Address(setCoords.getLng(), setCoords.getLat(), callback);
+          }
+
+          searchDetailAddrFromCoords(geocoder, [lat, lng], function (result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+              // 도로명주소 or 지번주소 반환
+              var detailAddr = !!result[0].road_address ?
+                result[0].road_address.address_name :
+                result[0].address.address_name;
+
+              // ex) 부산광역시 XXX구 XXX로 XX번길 XX -> 공백 단위로 split하여 두번째 요소를 가져옴
+              setSplitNowPositionString(detailAddr.split(' ')[1]);
+            }
+          });
+        });
+      }
+    })
   }
 
   const tagColorArray = ["bg-[#000AFF]", "bg-[#00C2FF]", "bg-[#E37A39]", "bg-[#FF0000]"];
@@ -134,7 +147,7 @@ const Post = () => {
         <div className="sticky top-0 bg-white relative z-9999">
           <div className="flex justify-between items-center">
             <span className="text-lg font-medium m-4">
-              해운대구
+              {splitNowPositionString}
             </span>
             <Position className="drop-shadow-position w-12 m-4" />
           </div>
@@ -143,7 +156,7 @@ const Post = () => {
           {
             isCallLists ?
               null :
-              <SimpleLoading/>
+              <SimpleLoading />
           }
 
         </div>
@@ -156,15 +169,24 @@ const Post = () => {
                 <div key={index} className="flex flex-col w-11/12 m-auto">
                   <div className="flex justify-between my-2">
                     <div>
-                      <div className="text-l font-bold">
+                      {/* title */}
+                      <div className="text-l font-bold mb-1">
                         {item.title}
-                        </div>
-                      <div className="text-xs -mt-1" >
+                      </div>
+
+                      {/* location */}
+                      <div className="flex text-xs items-center">
+                        <Location className="w-3" />
+                        <span className="ml-1">{item.location}</span>
+                      </div>
+
+                      {/* date */}
+                      <div className="text-xs mt-1" >
                         {item.date}
-                        </div>
+                      </div>
                     </div>
                     <div className="rounded-full border w-auto text-xs font-light flex justify-start items-center h-6 mt-2 pl-1 pr-3">
-                      <div className={tagColorArray[item.tag] + ' w-2.5 h-2.5 m-1 rounded-full'}/>
+                      <div className={tagColorArray[item.tag] + ' w-2.5 h-2.5 m-1 rounded-full'} />
                       {tagTextArray[item.tag]}
                     </div>
                   </div>
@@ -179,7 +201,7 @@ const Post = () => {
                   <br />
                 </div>
 
-                <div className={len == index ? null : 'w-full border-b-2 border-d9d9d9'}/>
+                <div className={len == index ? null : 'w-full border-b-2 border-d9d9d9'} />
 
               </div>
             )
@@ -203,7 +225,7 @@ const Post = () => {
       </div>
 
       <Nav />
-      
+
     </React.Fragment>
   );
 };
